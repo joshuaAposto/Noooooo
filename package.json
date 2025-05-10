@@ -1,7 +1,7 @@
 {
-  "name": "nodejs",
+  "name": "workspace",
   "version": "1.0.0",
-  "description": "",
+  "description": "Zen API is a modern, interactive API documentation and testing interface built with HTML, Tailwind CSS, and JavaScript. It provides a sleek, dark-themed dashboard for developers to explore, test, and integrate API endpoints with ease.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^22.13.11"
+    "@google/genai": "^0.13.0",
+    "@xaviabot/fb-downloader": "^1.0.14",
+    "axios": "^1.9.0",
+    "chalk": "^3.0.0",
+    "cors": "^2.8.5",
+    "duck-duck-scrape": "^2.2.7",
+    "express": "^5.1.0",
+    "tough-cookie": "^5.1.2",
+    "user-agents": "^1.1.535"
   }
 }
