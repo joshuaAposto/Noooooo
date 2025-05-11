@@ -2,979 +2,2173 @@
 <html lang="en" class="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title id="page-title">API Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="API Dashboard – Explore, test, and interact with APIs in a sleek, modern interface built for a superior user experience." />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>API Dashboard</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "API Dashboard",
+            "description": "Explore, test, and interact with APIs in a sleek, modern interface built for a superior user experience.",
+            "applicationCategory": "DeveloperTool",
+            "operatingSystem": "ALL"
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1E1A34">
-
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                    },
                     colors: {
-                        primary: '#8B5CF6',
-                        'primary-darker': '#7C3AED',
-                        'text-main': '#E5E7EB',
-                        'text-muted': '#9CA3AF',
-                        'bg-container': '#1E1A34',
-                        'bg-card': 'rgba(43, 42, 62, 0.7)',
-                        'border-color': 'rgba(139, 92, 246, 0.15)',
-                        'input-bg': 'rgba(43, 42, 62, 0.5)',
-                        'input-border': 'rgba(139, 92, 246, 0.3)',
-                        'nav-bg': 'rgba(30, 26, 52, 0.95)',
-                        'nav-border': 'rgba(139, 92, 246, 0.2)',
-                        'modal-bg': '#2a2744',
-                        'success-bg': '#166534',
-                        'success-text': '#dcfce7',
-                        'error-bg': '#991b1b',
-                        'error-text': '#fee2e2',
-                        'info-bg': 'rgba(139, 92, 246, 0.1)',
-                        'info-text': '#d8b4fe',
-                        'info-border': 'rgba(139, 92, 246, 0.3)',
-                        'warning-bg': 'rgba(245, 158, 11, 0.1)',
-                        'warning-text': '#fde68a',
-                        'warning-border': 'rgba(217, 119, 6, 0.3)',
-                        'method-get-bg': 'rgba(34, 197, 94, 0.15)',
-                        'method-get-text': '#86efac',
-                        'method-get-border': 'rgba(21, 128, 61, 0.3)',
-                        'method-post-bg': 'rgba(59, 130, 246, 0.15)',
-                        'method-post-text': '#93c5fd',
-                        'method-post-border': 'rgba(37, 99, 235, 0.3)',
-                        'method-put-bg': 'rgba(245, 158, 11, 0.15)',
-                        'method-put-text': '#fcd34d',
-                        'method-put-border': 'rgba(217, 119, 6, 0.3)',
-                        'method-delete-bg': 'rgba(239, 68, 68, 0.15)',
-                        'method-delete-text': '#fca5a5',
-                        'method-delete-border': 'rgba(185, 28, 28, 0.3)',
-                        'method-patch-bg': 'rgba(168, 85, 247, 0.15)',
-                        'method-patch-text': '#d8b4fe',
-                        'method-patch-border': 'rgba(126, 34, 206, 0.3)',
-                        'method-other-bg': 'rgba(107, 114, 128, 0.15)',
-                        'method-other-text': '#d1d5db',
-                        'method-other-border': 'rgba(55, 65, 81, 0.3)',
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                            950: '#2e1065'
+                        },
+                        dark: {
+                            950: '#09090b',
+                            900: '#121217',
+                            850: '#16161b',
+                            800: '#1a1a1f',
+                            700: '#202025',
+                            600: '#28282d',
+                            500: '#303035',
+                            400: '#3a3a3f'
+                        },
+                        accent: {
+                            purple: '#a78bfa',
+                            pink: '#f472b6',
+                            blue: '#60a5fa',
+                            teal: '#5eead4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 4s ease infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'shine': 'shine 2.5s linear infinite',
+                        'fadeIn': 'fadeIn 0.6s ease-out forwards',
+                        'slideUp': 'slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slideInRight': 'slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-badge': 'pulse-badge 1.8s infinite',
+                        'loading-bar': 'loading-animation 2s ease-in-out infinite',
+                        'particle-float': 'particle-float 3s ease-in-out infinite',
+                        'text-shine': 'text-shine 3s linear infinite',
+                        'border-pulse': 'border-pulse 2s infinite ease-in-out'
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                backgroundPosition: '0% 50%'
+                            },
+                            '50%': {
+                                backgroundPosition: '100% 50%'
+                            }
+                        },
+                        'float': {
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-12px)'
+                            }
+                        },
+                        'fadeIn': {
+                            from: {
+                                opacity: 0
+                            },
+                            to: {
+                                opacity: 1
+                            }
+                        },
+                        'slideUp': {
+                            from: {
+                                transform: 'translateY(40px)',
+                                opacity: 0
+                            },
+                            to: {
+                                transform: 'translateY(0)',
+                                opacity: 1
+                            }
+                        },
+                        'slideInRight': {
+                            from: {
+                                transform: 'translateX(40px)',
+                                opacity: 0
+                            },
+                            to: {
+                                transform: 'translateX(0)',
+                                opacity: 1
+                            }
+                        },
+                        'shine': {
+                            '0%': {
+                                backgroundPosition: '-200% center'
+                            },
+                            '100%': {
+                                backgroundPosition: '200% center'
+                            }
+                        },
+                        'pulse-badge': {
+                            '0%, 100%': {
+                                boxShadow: '0 0 0 0 rgba(167, 139, 250, 0.6)'
+                            },
+                            '70%': {
+                                boxShadow: '0 0 0 8px rgba(167, 139, 250, 0)'
+                            }
+                        },
+                        'loading-animation': {
+                            '0%': {
+                                backgroundPosition: '200% 0',
+                                boxShadow: '0 0 15px rgba(139, 92, 246, 0.4)'
+                            },
+                            '50%': {
+                                backgroundPosition: '0 0',
+                                boxShadow: '0 0 20px rgba(236, 72, 153, 0.6)'
+                            },
+                            '100%': {
+                                backgroundPosition: '200% 0',
+                                boxShadow: '0 0 15px rgba(139, 92, 246, 0.4)'
+                            }
+                        },
+                        'particle-float': {
+                            '0%': {
+                                transform: 'translateY(0) scale(0)',
+                                opacity: 0
+                            },
+                            '20%': {
+                                opacity: 0.8
+                            },
+                            '80%': {
+                                opacity: 0.8
+                            },
+                            '100%': {
+                                transform: 'translateY(-60px) scale(1.1)',
+                                opacity: 0
+                            }
+                        },
+                        'text-shine': {
+                            '0%': {
+                                backgroundPosition: '0% center'
+                            },
+                            '100%': {
+                                backgroundPosition: '200% center'
+                            }
+                        },
+                        'border-pulse': {
+                            '0%, 100%': {
+                                borderColor: 'rgba(139, 92, 246, 0.1)'
+                            },
+                            '50%': {
+                                borderColor: 'rgba(139, 92, 246, 0.3)'
+                            }
+                        }
                     },
                     boxShadow: {
-                        'primary-glow': '0 0 15px rgba(139, 92, 246, 0.3)',
-                        'card': '0 5px 20px rgba(0, 0, 0, 0.2)',
-                        'header': '0 2px 10px rgba(30, 26, 52, 0.2)',
-                        'nav': '0 -2px 10px rgba(30, 26, 52, 0.2)',
+                        'glow-sm': '0 0 8px rgba(167, 139, 250, 0.2)',
+                        'glow': '0 0 18px rgba(167, 139, 250, 0.3)',
+                        'glow-lg': '0 0 30px rgba(167, 139, 250, 0.25)',
+                        'card': '0 5px 15px rgba(0, 0, 0, 0.2)',
+                        'card-hover': '0 12px 25px rgba(0, 0, 0, 0.25)',
+                        'input': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                        'input-focus': '0 0 0 3px rgba(139, 92, 246, 0.2)',
+                        'modal': '0 25px 50px -12px rgba(0, 0, 0, 0.4)'
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
                     }
-                },
-            },
-        }
+                }
+            }
+        };
     </script>
-
     <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; overscroll-behavior-y: contain; background-color: theme('colors.bg-container'); color: theme('colors.text-main'); }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: theme('colors.primary'); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: theme('colors.primary-darker'); }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
 
-        .content-section { display: none; animation: fadeIn 0.3s ease-out; }
-        .content-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
 
-        .section-title { text-align: center; font-size: 1.5rem; font-weight: 600; margin-bottom: 1.75rem; color: inherit; position: relative; padding-bottom: 0rem; }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
 
-        .modal { display: none; position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.75); z-index: 1050; justify-content: center; align-items: center; padding: 1rem; animation: modalFadeIn 0.3s ease-out; }
-        .modal.show { display: flex; }
-        @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.3);
+        }
 
-        .modal-content { padding: 1.75rem; border-radius: 16px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); min-width: 300px; max-width: 95%; width: auto; border: 1px solid theme('colors.border-color'); background-color: theme('colors.modal-bg'); color: theme('colors.text-main'); animation: modalScaleUp 0.3s ease-out; position: relative; max-height: 90vh; display: flex; flex-direction: column; }
-        @keyframes modalScaleUp { from { transform: scale(0.95); opacity: 0.7; } to { transform: scale(1); opacity: 1; } }
+        body {
+            background-color: #09090b;
+            background-image: radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.1) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
 
-        .modal-content-body { overflow-y: auto; flex-grow: 1; }
-        .modal-content.success { border-left: 5px solid theme('colors.status-active'); background-color: theme('colors.success-bg'); color: theme('colors.success-text'); }
-        .modal-content.error { border-left: 5px solid theme('colors.status-offline'); background-color: theme('colors.error-bg'); color: theme('colors.error-text'); }
+        .unified-separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.25), transparent);
+        }
 
-        .nav-item { transition: color 0.2s ease-in-out; }
-        .nav-indicator { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .gradient-text {
+            background: linear-gradient(45deg, #c4b5fd, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-        input:focus, textarea:focus, select:focus, button:focus-visible { outline: 2px solid theme('colors.primary') !important; outline-offset: 2px; box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2); }
-        button, .nav-item, .category-item { user-select: none; -webkit-user-select: none; }
+        .gradient-text-alt {
+            background: linear-gradient(45deg, #a78bfa, #5eead4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-        .modal-close-button { position: absolute; top: 0.75rem; right: 0.75rem; padding: 0.5rem; border-radius: 9999px; background-color: rgba(255, 255, 255, 0.05); line-height: 1; transition: background-color 0.2s; z-index: 10; }
-        .modal-close-button:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .glass-effect {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(22, 22, 27, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-        #side-menu { transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
-        #side-menu.open { transform: translateX(0); }
-        #menu-overlay { transition: opacity 0.3s ease-in-out; }
+        .gradient-button {
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+            background-size: 200% auto;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
 
-        .category-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
-        .category-content.open { max-height: 1000px; }
-        .category-arrow { transition: transform 0.3s ease; }
-        .category-arrow.open { transform: rotate(90deg); }
+        .gradient-button:hover {
+            background-position: right center;
+            box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.3);
+        }
 
-        pre[class*="language-"] { background: theme('colors.input-bg'); border: 1px solid theme('colors.input-border'); border-radius: 0.5rem; padding: 1rem; font-size: 0.8rem; line-height: 1.4; overflow-x: auto; color: theme('colors.text-main'); }
-        .token.property { color: theme('colors.primary'); }
-        .token.string { color: theme('colors.method-get-text'); }
-        .token.number { color: theme('colors.method-post-text'); }
-        .token.boolean { color: theme('colors.method-post-text'); }
-        .token.null { color: theme('colors.method-delete-text'); }
-        .token.punctuation { color: theme('colors.text-muted'); }
-        .token.operator { color: theme('colors.text-muted'); }
+        .gradient-button:active {
+            transform: scale(0.98);
+        }
 
         .pulse-badge::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: inherit; box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6);
-            animation: pulse 2s infinite; pointer-events: none;
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            animation: pulse-badge 1.8s infinite;
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6); }
-            70% { box-shadow: 0 0 0 8px rgba(139, 92, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+
+        .method-badge {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        #loadingScreen { animation: fadeOutLoading 0.5s 2.5s ease-out forwards; }
-        @keyframes fadeOutLoading { to { opacity: 0; visibility: hidden; } }
-        #loadingSpinner > div { border-top-color: theme('colors.primary'); }
+
+        .method-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .loading-container {
+            position: relative;
+            width: 260px;
+            height: 5px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .loading-bar {
+            position: absolute;
+            inset: 0;
+            width: 0;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #a78bfa, #f472b6, #a78bfa);
+            background-size: 200% 100%;
+            animation: loading-bar 2s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+        }
+
+        .loading-particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 120px;
+            pointer-events: none;
+        }
+
+        .loading-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(167, 139, 250, 0.5);
+            animation: particle-float 3s ease-in-out infinite;
+            opacity: 0;
+            filter: blur(1px);
+        }
+
+        .loading-text {
+            position: relative;
+            color: transparent;
+            background: linear-gradient(90deg, #c4b5fd, #f472b6, #c4b5fd);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: text-shine 3.5s linear infinite;
+            font-weight: 600;
+        }
+
+        .copy-download-btn {
+            background-color: rgba(50, 50, 55, 0.7);
+            color: #cbd5e1;
+            padding: 0.35rem 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s ease;
+            cursor: pointer;
+            font-weight: 500;
+            backdrop-filter: blur(3px);
+        }
+
+        .copy-download-btn:hover {
+            background-color: rgba(65, 65, 70, 0.8);
+            border-color: rgba(167, 139, 250, 0.3);
+            color: #f1f5f9;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .copy-download-btn:active {
+            transform: translateY(0px) scale(0.98);
+        }
+
+        .frosted-card {
+            background: rgba(28, 28, 33, 0.6) !important;
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .frosted-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid transparent;
+            transition: border-color 0.35s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .frosted-card:hover {
+            background: rgba(35, 35, 40, 0.7) !important;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .frosted-card:hover::before {
+            border-color: rgba(139, 92, 246, 0.2);
+            animation: border-pulse 2s infinite ease-in-out;
+        }
+
+        .frosted-card h3.gradient-text {
+            background: linear-gradient(45deg, #ddd6fe, #f9a8d4);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .small-frosted-card {
+            display: inline-block;
+            border-radius: 0.75rem;
+            background: rgba(40, 40, 45, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 0.6rem 1.1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .small-frosted-card:hover {
+            background: rgba(50, 50, 55, 0.7);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+            border-color: rgba(139, 92, 246, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .small-frosted-card span,
+        .small-frosted-card a {
+            background: linear-gradient(45deg, #d1c4e9, #f48fb1);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 500;
+        }
+
+        .icon-button {
+            outline: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 9999px;
+        }
+
+        .icon-button:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+        }
+
+        .icon-button:active {
+            transform: scale(0.92);
+            filter: brightness(1.1);
+        }
+
+        .nav-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 55;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .nav-menu-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(22, 22, 27, 0.9);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            z-index: 60;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.35);
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
+            overflow-y: auto;
+        }
+
+        .nav-menu.active {
+            transform: translateX(0);
+        }
+
+        .nav-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 0.85rem 1.5rem;
+            margin: 0.25rem 0.75rem;
+            color: #a1a1aa;
+            transition: all 0.25s ease;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: transparent;
+            transition: all 0.25s ease;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .nav-menu-item:hover {
+            background: rgba(139, 92, 246, 0.08);
+            color: #e4e4e7;
+        }
+
+        .nav-menu-item.active {
+            background: rgba(139, 92, 246, 0.12);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-menu-item.active::before {
+            background-color: rgba(167, 139, 250, 0.8);
+        }
+
+        .nav-menu-item svg {
+            margin-right: 1rem;
+            color: #a1a1aa;
+            transition: color 0.25s ease;
+        }
+
+        .nav-menu-item.active svg,
+        .nav-menu-item:hover svg {
+            color: #c4b5fd;
+        }
+
+        .page-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .page-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+            gap: 1.75rem;
+        }
+
+        .category-grid-card {
+            background: rgba(28, 28, 33, 0.6);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border-radius: 1rem;
+            padding: 1.75rem;
+            transition: all 0.35s ease;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-grid-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid transparent;
+            transition: border-color 0.35s ease;
+            pointer-events: none;
+        }
+
+        .category-grid-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            background: rgba(35, 35, 40, 0.7);
+        }
+
+        .category-grid-card:hover::after {
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        .category-grid-header {
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .category-grid-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            background: linear-gradient(45deg, #ddd6fe, #f9a8d4);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .category-grid-count {
+            font-size: 0.8rem;
+            color: #a1a1aa;
+        }
+
+        .category-grid-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .category-grid-item {
+            padding: 0.65rem 0.9rem;
+            border-radius: 0.6rem;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .category-grid-item:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.2);
+            transform: translateX(3px);
+        }
+
+        .category-grid-item-name {
+            font-size: 0.9rem;
+            color: #d4d4d8;
+            font-weight: 500;
+        }
+
+        .category-grid-item-method {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.3rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .doc-section {
+            margin-bottom: 3.5rem;
+        }
+
+        .doc-section-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            background: linear-gradient(45deg, #a78bfa, #5eead4);
+            -webkit-background-clip: text;
+            color: transparent;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+            padding-bottom: 0.6rem;
+        }
+
+        .doc-card {
+            background: rgba(28, 28, 33, 0.6);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border-radius: 1rem;
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.35s ease;
+        }
+
+        .doc-card:hover {
+            background: rgba(35, 35, 40, 0.7);
+            border-color: rgba(139, 92, 246, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .doc-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            color: #f4f4f5;
+        }
+
+        .doc-card-description {
+            color: #b0b0b8;
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .doc-code {
+            background: rgba(9, 9, 11, 0.7);
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d4d4d8;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.75rem 0;
+            background: rgba(28, 28, 33, 0.5);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .doc-table th {
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            background: rgba(139, 92, 246, 0.1);
+            color: #e4e4e7;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .doc-table td {
+            padding: 0.9rem 1.1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: #b0b0b8;
+        }
+
+        .doc-table tr:hover td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card {
+            background: rgba(28, 28, 33, 0.6);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border-radius: 1rem;
+            padding: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid transparent;
+            transition: border-color 0.35s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .feature-card:hover {
+            background: rgba(35, 35, 40, 0.7);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover::before {
+            border-color: rgba(139, 92, 246, 0.15);
+        }
+
+        .feature-icon {
+            width: 3.75rem;
+            height: 3.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.85rem;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-icon svg {
+            width: 1.85rem;
+            height: 1.85rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            color: #f4f4f5;
+        }
+
+        body.modal-open {
+            padding-right: 0 !important;
+        }
+
+        #apiResponseModal,
+        .dynamic-modal {
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            background-color: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        #apiResponseModal.visible,
+        .dynamic-modal.visible {
+            opacity: 1;
+        }
+
+        .modal-content-area {
+            background: linear-gradient(145deg, #16161b, #1a1a1f);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--tw-shadow-modal);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+        }
+
+        #apiResponseModal.visible .modal-content-area,
+        .dynamic-modal.visible .modal-content-area {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        #apiResponseModal pre,
+        .dynamic-modal pre {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            background: rgba(9, 9, 11, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d4d4d8;
+        }
+
+        .input-field {
+            background: rgba(40, 40, 45, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e4e4e7;
+            border-radius: 0.6rem;
+            padding: 0.8rem 1rem;
+            transition: all 0.25s ease;
+            box-shadow: var(--tw-shadow-input);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: var(--tw-shadow-input), var(--tw-shadow-input-focus);
+            background: rgba(50, 50, 55, 0.8);
+        }
+
+        .view-all-btn {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: #c4b5fd;
+            padding: 0.4rem 0.9rem;
+            border-radius: 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+
+        .view-all-btn:hover {
+            background-color: rgba(139, 92, 246, 0.2);
+            color: #ddd6fe;
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
+        }
+
+        #notificationPopup {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scrollbar-thin {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(139, 92, 246, 0.2) rgba(255, 255, 255, 0.03);
+        }
     </style>
 </head>
 
-<body class="bg-bg-container text-text-main font-poppins">
-
-    <div id="loadingScreen" class="fixed inset-0 bg-bg-container z-[100] flex flex-col items-center justify-center">
-      <div id="loadingSpinner" class="relative w-12 h-12 mb-4">
-        <div class="absolute inset-0 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-      </div>
-      <p class="text-primary text-lg font-medium">Loading Dashboard...</p>
+<body class="bg-dark-950 text-gray-300 font-sans min-h-screen relative transition-colors duration-300 overflow-x-hidden">
+    <div id="loadingScreen" class="fixed inset-0 bg-dark-950 z-[9999] flex flex-col items-center justify-center transition-opacity duration-500 ease-out" aria-live="polite">
+        <div class="loading-container" aria-hidden="true">
+            <div id="loadingBar" class="loading-bar"></div>
+        </div>
+        <div class="loading-particles"></div>
+        <p class="loading-text text-xl font-medium font-heading mt-5">Loading Stellar APIs...</p>
     </div>
 
-    <div class="max-w-md mx-auto min-h-screen pb-20 bg-bg-container shadow-lg flex flex-col relative overflow-x-hidden">
+    <div id="navMenuBackdrop" class="nav-menu-backdrop" aria-hidden="true"></div>
 
-        <header class="p-4 border-b bg-nav-bg border-nav-border sticky top-0 z-40 backdrop-blur-md shadow-header">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                   <img id="header-logo" src="/icon.png" alt="Logo" class="w-8 h-8 bg-primary p-1 rounded-lg">
-                   <h1 id="header-title" class="text-xl font-semibold text-inherit">Dashboard</h1>
-                   <span id="header-version" class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">v1.0</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button id="notification-toggle" class="text-text-muted hover:text-primary transition-colors p-1.5 relative">
-                        <i data-lucide="bell" class="w-5 h-5"></i>
-                        <span id="notification-badge" class="absolute top-0 right-0 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center hidden pulse-badge">0</span>
-                    </button>
-                    <button id="menu-button" class="text-text-muted hover:text-primary transition-colors">
-                        <i data-lucide="menu" class="w-5 h-5"></i>
-                    </button>
-                </div>
+    <nav id="navMenu" class="nav-menu" aria-label="Main Navigation">
+        <div class="py-6 px-4 border-b border-dark-700/50">
+            <div class="flex items-center justify-between mb-6 px-2">
+                <a href="#" class="flex items-center group" data-page="home" onclick="document.getElementById('navMenuToggle').click(); setActivePage('home', this);">
+                    <span class="text-xl font-semibold gradient-text font-heading">API Dashboard</span>
+                    <div class="ml-2 bg-primary-900/60 text-primary-300 px-2 py-0.5 text-xs rounded-full border border-primary-700/30 group-hover:bg-primary-800/70 transition-colors">v1.0</div>
+                </a>
+                <button id="closeNavMenu" class="icon-button p-1.5 text-gray-400 hover:text-white hover:bg-dark-600/70 transition-all" aria-label="Close menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-        </header>
+            <p class="text-sm text-gray-400 mb-4 px-2">Explore & interact seamlessly.</p>
+        </div>
+        <div class="py-4">
+            <a href="#" class="nav-menu-item active" data-page="home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Home
+            </a>
+            <a href="#" class="nav-menu-item" data-page="stats">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Statistics
+            </a>
+            <a href="#" class="nav-menu-item" data-page="documentation">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Documentation
+            </a>
+        </div>
+    </nav>
 
-        <main class="flex-grow overflow-y-auto p-5">
-            <div class="content-sections">
+    <nav id="navbar" class="fixed top-0 inset-x-0 z-30 transition-all duration-300 h-16" aria-label="Top Navigation">
+        <div class="absolute inset-0 transition-all duration-300" id="navbarBgEffect"></div>
+        <div class="container mx-auto px-4 sm:px-6 h-full flex items-center justify-between relative z-10">
+            <div class="flex items-center">
+                <button id="navMenuToggle" class="icon-button p-2 mr-3 text-gray-300 hover:text-white hover:bg-dark-700/70 transition-colors" aria-label="Toggle menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <a href="#" class="flex items-center transition-opacity duration-300 opacity-0" id="navbarBrand" aria-label="Dashboard Home" onclick="setActivePage('home', document.querySelector('.nav-menu-item[data-page=\'home\']'))">
+                    <span id="header" class="text-lg font-semibold mr-2 gradient-text font-heading"></span>
+                    <div id="versionHeader" class="bg-primary-900/70 text-primary-300 px-2.5 py-0.5 text-xs rounded-full border border-primary-700/40 shadow-sm"></div>
+                </a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button id="notificationToggle" class="icon-button p-2 text-gray-300 hover:text-white hover:bg-dark-700/70 transition-colors relative" aria-label="Notifications">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span id="notificationBadge" class="absolute top-0.5 right-0.5 bg-gradient-to-r from-accent-purple to-accent-pink text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center hidden pulse-badge font-bold shadow-md">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="absolute bottom-0 inset-x-0 unified-separator opacity-0 transition-opacity duration-300" id="navbarSeparator"></div>
+    </nav>
 
-                <section id="apis-section" class="content-section active">
-                    <div class="relative mb-5">
-                        <input type="text" id="api-search" class="w-full p-3 pl-10 rounded-lg border bg-input-bg border-input-border text-text-main placeholder-text-muted focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm" placeholder="Search APIs...">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                             <i data-lucide="search" class="w-4 h-4 text-text-muted"></i>
+    <main class="transition-all duration-300 pt-16">
+        <div id="homePage" class="page-container active">
+            <div class="container mx-auto px-4 sm:px-6 py-12">
+                <section class="relative flex flex-col lg:flex-row items-center mb-20 rounded-2xl p-8 lg:p-12 shadow-xl overflow-hidden animate-fadeIn bg-gradient-to-br from-dark-850 via-dark-900 to-dark-950 border border-dark-700/50" aria-labelledby="dashboardBanner">
+                    <div class="absolute inset-0 opacity-20 mix-blend-soft-light" style="background-image: radial-gradient(circle at top left, rgba(139, 92, 246, 0.3) 0%, transparent 40%), radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.2) 0%, transparent 50%);"></div>
+                    <div class="relative z-10 w-full lg:w-1/2 flex justify-center lg:justify-start mb-10 lg:mb-0">
+                        <img id="dynamicImage" class="rounded-xl max-w-xs sm:max-w-sm lg:max-w-md h-auto object-cover shadow-glow-lg animate-float" src="/placeholder.svg" loading="lazy" alt="Dashboard banner placeholder" />
+                    </div>
+                    <div class="relative z-10 flex-1 text-center lg:text-left lg:pl-12 animate-slideUp" style="animation-delay: 0.15s;">
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 mb-4">
+                            <h1 id="name" class="text-3xl md:text-4xl font-bold gradient-text font-heading tracking-tight"></h1>
+                            <div id="version" class="bg-gradient-to-r from-primary-900/60 to-primary-800/60 text-primary-300 px-3 py-1 text-xs rounded-full border border-primary-700/40 shadow-sm"></div>
+                        </div>
+                        <p id="description" class="text-gray-400 text-lg mb-6 leading-relaxed"></p>
+                        <div id="headerStatus" class="text-sm text-green-400 font-medium mb-7 flex items-center justify-center lg:justify-start">
+                            <span class="inline-block w-2.5 h-2.5 bg-green-400 rounded-full mr-2.5 shadow-[0_0_8px_rgba(74,222,128,0.5)] animate-pulse" aria-hidden="true"></span>
+                            <span id="headerStatusText"></span>
+                        </div>
+                        <div id="apiLinks" class="flex flex-wrap gap-3 justify-center lg:justify-start"></div>
+                    </div>
+                </section>
+
+                <section class="mb-12 animate-slideUp" style="animation-delay: 0.25s;">
+                    <div class="flex items-center justify-between mb-8 border-b border-dark-700/50 pb-4">
+                        <h2 class="text-2xl font-bold gradient-text-alt font-heading tracking-tight">API Categories</h2>
+                        <div class="text-sm text-gray-400" id="homeCategoryCount">0 available</div>
+                    </div>
+                    <div id="categoriesGrid" class="categories-grid"></div>
+                </section>
+            </div>
+        </div>
+
+        <div id="statsPage" class="page-container hidden">
+            <div class="container mx-auto px-4 sm:px-6 py-12">
+                <h1 class="text-3xl md:text-4xl font-bold gradient-text font-heading mb-12 border-b border-dark-700/50 pb-5 tracking-tight">API Statistics</h1>
+
+                <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 mb-14 animate-slideUp" style="animation-delay: 0.1s;" aria-label="Dashboard Stats">
+                    <article class="frosted-card p-6" role="region" aria-label="Total APIs">
+                        <header class="flex items-start justify-between mb-4">
+                            <h3 class="text-lg font-medium text-gray-300 font-heading">Total APIs</h3>
+                            <div class="p-2.5 bg-gradient-to-br from-primary-800/30 to-primary-900/40 rounded-lg border border-primary-700/30 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 5h.01M12 14h.01M15 11h.01" />
+                                </svg>
+                            </div>
+                        </header>
+                        <div class="flex items-baseline mt-2"> <span id="totalApis" class="text-4xl font-bold text-white">0</span> <span class="text-gray-400 ml-2 text-sm">endpoints</span> </div>
+                    </article>
+                    <article class="frosted-card p-6" role="region" aria-label="Categories">
+                        <header class="flex items-start justify-between mb-4">
+                            <h3 class="text-lg font-medium text-gray-300 font-heading">Categories</h3>
+                            <div class="p-2.5 bg-gradient-to-br from-green-800/30 to-green-900/40 rounded-lg border border-green-700/30 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                        </header>
+                        <div class="flex items-baseline mt-2"> <span id="totalCategories" class="text-4xl font-bold text-white">0</span> <span class="text-gray-400 ml-2 text-sm">groups</span> </div>
+                    </article>
+                    <article class="frosted-card p-6" role="region" aria-label="GET Endpoints">
+                        <header class="flex items-start justify-between mb-4">
+                            <h3 class="text-lg font-medium text-gray-300 font-heading">GET Requests</h3>
+                            <div class="p-2.5 bg-gradient-to-br from-blue-800/30 to-blue-900/40 rounded-lg border border-blue-700/30 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                            </div>
+                        </header>
+                        <div class="flex items-baseline mt-2"> <span id="getEndpoints" class="text-4xl font-bold text-white">0</span> <span class="text-gray-400 ml-2 text-sm">count</span> </div>
+                    </article>
+                    <article class="frosted-card p-6" role="region" aria-label="POST Endpoints">
+                        <header class="flex items-start justify-between mb-4">
+                            <h3 class="text-lg font-medium text-gray-300 font-heading">POST Requests</h3>
+                            <div class="p-2.5 bg-gradient-to-br from-amber-800/30 to-amber-900/40 rounded-lg border border-amber-700/30 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                            </div>
+                        </header>
+                        <div class="flex items-baseline mt-2"> <span id="postEndpoints" class="text-4xl font-bold text-white">0</span> <span class="text-gray-400 ml-2 text-sm">count</span> </div>
+                    </article>
+                </section>
+
+                <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 animate-slideUp" style="animation-delay: 0.2s;">
+                    <div class="frosted-card p-7 lg:p-8">
+                        <h3 class="text-xl font-semibold text-gray-100 font-heading mb-6">Method Distribution</h3>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between mb-1.5 text-sm"> <span class="font-medium text-blue-300">GET</span> <span class="text-gray-400" id="getPercentage">0%</span> </div>
+                                <div class="w-full bg-dark-600 rounded-full h-2.5 overflow-hidden shadow-inner">
+                                    <div id="getBar" class="bg-gradient-to-r from-blue-500 to-blue-400 h-full rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5 text-sm"> <span class="font-medium text-green-300">POST</span> <span class="text-gray-400" id="postPercentage">0%</span> </div>
+                                <div class="w-full bg-dark-600 rounded-full h-2.5 overflow-hidden shadow-inner">
+                                    <div id="postBar" class="bg-gradient-to-r from-green-500 to-green-400 h-full rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5 text-sm"> <span class="font-medium text-yellow-300">PUT</span> <span class="text-gray-400" id="putPercentage">0%</span> </div>
+                                <div class="w-full bg-dark-600 rounded-full h-2.5 overflow-hidden shadow-inner">
+                                    <div id="putBar" class="bg-gradient-to-r from-yellow-500 to-yellow-400 h-full rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5 text-sm"> <span class="font-medium text-red-400">DELETE</span> <span class="text-gray-400" id="deletePercentage">0%</span> </div>
+                                <div class="w-full bg-dark-600 rounded-full h-2.5 overflow-hidden shadow-inner">
+                                    <div id="deleteBar" class="bg-gradient-to-r from-red-500 to-red-400 h-full rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div id="api-list-container" class="space-y-4">
-                       <div id="api-list-loading" class="flex justify-center items-center py-10">
-                            <i data-lucide="loader-circle" class="w-8 h-8 text-primary animate-spin"></i>
-                       </div>
-                    </div>
-                </section>
-
-                <section id="stats-section" class="content-section">
-                     <h2 class="section-title">Dashboard Stats</h2>
-                     <div class="grid grid-cols-2 gap-4">
-                         <div class="bg-bg-card rounded-xl p-4 shadow-card border border-border-color">
-                           <h3 class="text-sm font-medium text-text-muted mb-2 flex items-center gap-1.5"><i data-lucide="package" class="w-4 h-4 text-primary"></i>Total APIs</h3>
-                           <span id="totalApis" class="text-2xl font-semibold">0</span>
-                         </div>
-                         <div class="bg-bg-card rounded-xl p-4 shadow-card border border-border-color">
-                           <h3 class="text-sm font-medium text-text-muted mb-2 flex items-center gap-1.5"><i data-lucide="folder-open" class="w-4 h-4 text-primary"></i>Categories</h3>
-                           <span id="totalCategories" class="text-2xl font-semibold">0</span>
-                         </div>
-                         <div class="bg-bg-card rounded-xl p-4 shadow-card border border-border-color">
-                           <h3 class="text-sm font-medium text-text-muted mb-2 flex items-center gap-1.5"><i data-lucide="arrow-down-circle" class="w-4 h-4 text-method-get-text"></i>GET</h3>
-                           <span id="getEndpoints" class="text-2xl font-semibold">0</span>
-                         </div>
-                         <div class="bg-bg-card rounded-xl p-4 shadow-card border border-border-color">
-                           <h3 class="text-sm font-medium text-text-muted mb-2 flex items-center gap-1.5"><i data-lucide="arrow-up-circle" class="w-4 h-4 text-method-post-text"></i>POST</h3>
-                           <span id="postEndpoints" class="text-2xl font-semibold">0</span>
-                         </div>
-                     </div>
-                      <div class="mt-6 bg-bg-card rounded-xl p-4 shadow-card border border-border-color">
-                           <h3 class="text-base font-medium text-text-main mb-3 flex items-center gap-1.5"><i data-lucide="link" class="w-4 h-4 text-primary"></i>Quick Links</h3>
-                           <div id="apiLinks" class="flex flex-wrap gap-2"></div>
-                       </div>
-                </section>
-
-                <section id="notifications-section" class="content-section">
-                    <h2 class="section-title">Notifications</h2>
-                    <div id="notifications-list" class="space-y-4">
-                         <div id="no-notifications" class="text-center text-text-muted py-6">No notifications yet.</div>
+                    <div class="frosted-card p-7 lg:p-8">
+                        <h3 class="text-xl font-semibold text-gray-100 font-heading mb-6">Category Distribution</h3>
+                        <div id="categoryDistribution" class="space-y-5 max-h-80 overflow-y-auto pr-2 scrollbar-thin"></div>
                     </div>
                 </section>
             </div>
-        </main>
+        </div>
 
-        <nav class="fixed bottom-0 left-0 right-0 bg-nav-bg border-t border-nav-border max-w-md mx-auto backdrop-blur-md z-50 shadow-nav">
-            <div class="relative">
-                <div class="flex justify-around items-center px-3 py-2.5">
-                    <a href="#" data-section="apis" class="nav-item flex flex-col items-center text-primary p-2 w-1/3">
-                        <i data-lucide="list" class="w-5 h-5 mb-0.5"></i><span class="text-xs font-medium">APIs</span>
-                    </a>
-                    <a href="#" data-section="stats" class="nav-item flex flex-col items-center text-text-muted p-2 w-1/3 hover:text-primary transition-colors">
-                        <i data-lucide="bar-chart-2" class="w-5 h-5 mb-0.5"></i><span class="text-xs font-medium">Stats</span>
-                    </a>
-                    <a href="#" data-section="notifications" class="nav-item flex flex-col items-center text-text-muted p-2 w-1/3 hover:text-primary transition-colors">
-                        <i data-lucide="bell" class="w-5 h-5 mb-0.5"></i><span class="text-xs font-medium">Notify</span>
-                    </a>
-                </div>
-                <div class="nav-indicator absolute bottom-0 left-0 h-1 bg-primary rounded-t-full" style="width: 33.33%"></div>
+        <div id="documentationPage" class="page-container hidden">
+            <div class="container mx-auto px-4 sm:px-6 py-12">
+                <h1 class="text-3xl md:text-4xl font-bold gradient-text font-heading mb-12 border-b border-dark-700/50 pb-5 tracking-tight">API Documentation</h1>
+
+                <section class="doc-section animate-slideUp" style="animation-delay: 0.1s;">
+                    <h2 class="doc-section-title">Introduction</h2>
+                    <div class="doc-card">
+                        <h3 class="doc-card-title">Welcome to the API Universe</h3>
+                        <p class="doc-card-description"> This platform offers a diverse collection of free REST APIs designed for effortless integration. No keys, no sign-ups – just pure API power at your fingertips. Ideal for rapid prototyping, learning, or adding dynamic features to your applications. </p>
+                        <p class="doc-card-description"> Explore categories, test endpoints instantly on this dashboard, and build amazing things with reliable, high-performance APIs. </p>
+                    </div>
+                </section>
+
+                <section class="doc-section animate-slideUp" style="animation-delay: 0.2s;">
+                    <h2 class="doc-section-title">Core Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                        <div class="feature-card">
+                            <div class="feature-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg> </div>
+                            <h3 class="feature-title text-accent-blue">Zero Authentication</h3>
+                            <p class="text-gray-400 leading-relaxed text-sm"> Instant access without API keys or complex setups. Perfect for quick prototyping and hassle-free development. </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg> </div>
+                            <h3 class="feature-title text-accent-pink">High Performance</h3>
+                            <p class="text-gray-400 leading-relaxed text-sm"> Experience fast response times and reliable service. Our infrastructure is optimized for speed and stability. </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h10l-1-1-0.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg> </div>
+                            <h3 class="feature-title text-accent-purple">Interactive Dashboard</h3>
+                            <p class="text-gray-400 leading-relaxed text-sm"> Explore, test, and view responses directly within this modern interface. See parameters and results instantly. </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                                </svg> </div>
+                            <h3 class="feature-title text-accent-teal">Diverse Data Sources</h3>
+                            <p class="text-gray-400 leading-relaxed text-sm"> Access a wide variety of data, from simple utilities to complex datasets, suitable for many application types. </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg> </div>
+                            <h3 class="feature-title text-accent-blue">Usage Statistics</h3>
+                            <p class="text-gray-400 leading-relaxed text-sm"> Monitor overall API usage patterns and category distributions via the integrated statistics dashboard. </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg> </div>
+                            <h3 class="feature-title text-accent-pink">Reliable & Maintained</h3>
+                            <p class="text-gray-400 leading-relaxed text-sm"> Built for stability, with ongoing maintenance to ensure consistent availability for your projects. </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="doc-section animate-slideUp" style="animation-delay: 0.3s;">
+                    <h2 class="doc-section-title">Basic Usage</h2>
+                    <div class="doc-card">
+                        <h3 class="doc-card-title">Making Requests</h3>
+                        <p class="doc-card-description"> Simply make an HTTP request (usually GET, but check specific endpoint details) to the API paths listed. No keys or complex headers needed. </p>
+                        <h4 class="text-lg font-semibold mb-3 text-gray-100 mt-5">Example (JavaScript Fetch):</h4>
+                        <pre class="doc-code"><code><span style="color:#c9d1d9;">fetch</span>(<span style="color:#a5d6ff;">'https://zen-api.gleeze.com/api/example/users'</span>)
+  .<span style="color:#c9d1d9;">then</span>(<span style="color:#ffd700;">response</span> <span style="color:#ff7b72;">=></span> {
+    <span style="color:#ff7b72;">if</span> (!<span style="color:#ffd700;">response</span>.<span style="color:#c9d1d9;">ok</span>) {
+      <span style="color:#ff7b72;">throw new</span> <span style="color:#d2a8ff;">Error</span>(<span style="color:#a5d6ff;">`HTTP error! Status: </span><span style="color:#ffd700;">${</span><span style="color:#ffd700;">response</span>.<span style="color:#c9d1d9;">status</span><span style="color:#ffd700;">}</span><span style="color:#a5d6ff;">`</span>);
+    }
+    <span style="color:#ff7b72;">return</span> <span style="color:#ffd700;">response</span>.<span style="color:#c9d1d9;">json</span>(); <span style="color:#8b949e;">// or response.text(), response.blob() etc.</span>
+  })
+  .<span style="color:#c9d1d9;">then</span>(<span style="color:#ffd700;">data</span> <span style="color:#ff7b72;">=></span> {
+    <span style="color:#c9d1d9;">console</span>.<span style="color:#c9d1d9;">log</span>(<span style="color:#a5d6ff;">'API Data:'</span>, <span style="color:#ffd700;">data</span>);
+    <span style="color:#8b949e;">// Process your data here</span>
+  })
+  .<span style="color:#c9d1d9;">catch</span>(<span style="color:#ffd700;">error</span> <span style="color:#ff7b72;">=></span> {
+    <span style="color:#c9d1d9;">console</span>.<span style="color:#c9d1d9;">error</span>(<span style="color:#a5d6ff;">'Fetch error:'</span>, <span style="color:#ffd700;">error</span>);
+  });</code></pre>
+                        <h4 class="text-lg font-semibold mb-3 mt-6 text-gray-100">Handling Responses</h4>
+                        <p class="doc-card-description"> Most endpoints return JSON. Image-based endpoints typically return `image/png` or `image/jpeg`. Always check the `Content-Type` response header. Use the interactive modal here to easily see response types and data structures. </p>
+                    </div>
+                </section>
+
+                <section class="doc-section animate-slideUp" style="animation-delay: 0.4s;">
+                    <h2 class="doc-section-title">Terms of Service</h2>
+                    <div class="doc-card">
+                        <h3 class="doc-card-title">Usage Guidelines</h3>
+                        <p class="doc-card-description"> By using these APIs, you agree to fair use: </p>
+                        <ul class="list-disc list-inside space-y-2.5 text-gray-400 mb-6 pl-4">
+                            <li>Use ethically and lawfully.</li>
+                            <li>Avoid excessive requests (rate limiting may apply).</li>
+                            <li>No guarantees; use "as is". We are not liable for damages.</li>
+                            <li>Attribution is welcome but not mandatory.</li>
+                            <li>Terms can change; continued use means acceptance.</li>
+                        </ul>
+                    </div>
+                </section>
             </div>
-        </nav>
+        </div>
+    </main>
 
-        <div id="apiResponseModal" class="modal">
-            <div class="modal-content">
-                 <button type="button" class="modal-close-button" aria-label="Close API details" onclick="closeModal('apiResponseModal')">
-                    <i data-lucide="x" class="w-4 h-4 text-text-muted"></i>
-                </button>
-                <h3 class="text-lg font-semibold mb-1 text-primary" id="apiResponseModalLabel">API Details</h3>
-                <p class="text-xs text-text-muted mb-4" id="apiResponseModalDesc">Description here.</p>
-
-                <div class="modal-content-body space-y-4 pr-2 -mr-2">
-                    <pre id="apiEndpoint" class="text-xs hidden break-all whitespace-pre-wrap"></pre>
-                    <div id="apiQueryInputContainer" class="space-y-3"></div>
-
-                    <div id="apiResponseLoading" class="hidden py-8 flex justify-center items-center gap-2 text-primary">
-                         <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i> Fetching...
+    <div id="apiResponseModal" class="fixed inset-0 z-50 hidden overflow-y-auto p-4" role="dialog" aria-labelledby="apiResponseModalLabel" aria-modal="true">
+        <div class="min-h-full flex items-center justify-center">
+            <div class="modal-content-area rounded-xl w-full max-w-4xl max-h-[90vh] flex flex-col relative">
+                <header class="flex justify-between items-center p-5 sm:p-6 border-b border-dark-700/60 sticky top-0 z-10 bg-gradient-to-r from-dark-800/90 to-dark-700/90 backdrop-blur-sm rounded-t-xl">
+                    <div>
+                        <h3 class="text-xl font-semibold gradient-text font-heading tracking-tight" id="apiResponseModalLabel">API Response</h3>
+                        <p class="text-gray-400 text-sm mt-1" id="apiResponseModalDesc">Details for the selected API endpoint.</p>
                     </div>
-                    <div id="apiResponseContentWrapper" class="hidden">
-                         <h4 class="text-sm font-medium text-text-muted mb-2">Response:</h4>
-                         <pre id="apiResponseContent" class="language-json"></pre>
-                         <div id="apiImageResponse" class="mt-2"></div>
-                    </div>
-                     <div id="apiResponseError" class="hidden p-3 bg-error-bg text-error-text rounded-lg border border-red-700/50 text-sm"></div>
-                </div>
-
-                <div class="mt-4 pt-4 border-t border-border-color">
-                    <button id="submitQueryBtn" class="hidden w-full bg-primary text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-primary-darker transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg shadow-primary/30 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed">
-                        <i data-lucide="send" class="w-4 h-4"></i> Submit Request
+                    <button type="button" id="closeModalBtn" class="icon-button text-gray-400 hover:text-gray-100 p-1.5 hover:bg-dark-600/70 transition-colors" aria-label="Close modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </button>
+                </header>
+                <div class="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6 scrollbar-thin">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">API Endpoint URL</label>
+                        <div class="flex items-center justify-between bg-dark-900/70 rounded-lg border border-dark-600/50 p-3.5 shadow-inner">
+                            <pre id="apiEndpoint" class="flex-1 text-gray-300 text-sm overflow-x-auto font-mono mr-4 bg-transparent border-none p-0 scrollbar-thin scrollbar-thumb-dark-600 scrollbar-track-dark-800"></pre>
+                            <div id="apiEndpointActions" class="flex-shrink-0"></div>
+                        </div>
+                    </div>
+                    <div id="apiQueryInputContainer" class="space-y-4"></div>
+                    <div id="apiResponseContainer">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">API Response</label>
+                        <div id="apiResponseLoading" class="hidden py-16 flex flex-col items-center justify-center text-center text-gray-400">
+                            <div class="relative w-10 h-10 mb-4">
+                                <div class="absolute inset-0 border-4 border-primary-800/50 border-t-primary-400 rounded-full animate-spin-slow"></div>
+                            </div>
+                            Fetching response...
+                        </div>
+                        <div class="flex items-center justify-end mb-2" id="apiResponseActions"></div>
+                        <div id="apiResponseContentWrapper" class="bg-dark-900/70 rounded-lg border border-dark-600/50 overflow-hidden shadow-inner min-h-[100px]">
+                            <pre id="apiResponseContent" class="hidden p-4 text-gray-300 text-sm overflow-x-auto font-mono scrollbar-thin scrollbar-thumb-dark-600 scrollbar-track-dark-800"></pre>
+                            <div id="apiResponseImageContainer" class="hidden p-4 flex justify-center"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-         <div id="notificationPopupModal" class="modal">
-            <div class="modal-content">
-                 <button type="button" class="modal-close-button" aria-label="Close Notifications" onclick="closeModal('notificationPopupModal')">
-                    <i data-lucide="x" class="w-4 h-4 text-text-muted"></i>
-                </button>
-                <h3 class="text-lg font-semibold mb-4 text-center text-primary">Notifications</h3>
-                 <div id="notificationPopupList" class="space-y-3 max-h-[60vh] overflow-y-auto pr-2 -mr-2 modal-content-body">
-                     <div id="no-popup-notifications" class="text-center text-text-muted py-6">No notifications.</div>
-                 </div>
-                 <div class="mt-4 pt-4 border-t border-border-color">
-                    <button id="markAllReadBtn" class="w-full bg-primary/10 text-primary py-2 rounded-lg font-medium text-xs hover:bg-primary/20 transition-colors">
-                       Mark all as read
+                <footer class="p-5 sm:p-6 border-t border-dark-700/60 sticky bottom-0 z-10 bg-gradient-to-r from-dark-800/90 to-dark-700/90 backdrop-blur-sm rounded-b-xl flex justify-end">
+                    <button id="submitQueryBtn" class="hidden px-7 py-2.5 gradient-button text-white font-medium rounded-lg shadow-lg hover:shadow-primary-500/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-800 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none" disabled>
+                        Submit Request
                     </button>
-                 </div>
+                </footer>
             </div>
         </div>
+    </div>
 
-
-        <div id="menu-overlay" class="fixed inset-0 bg-black/60 z-[55] hidden opacity-0"></div>
-        <div id="side-menu" class="fixed top-0 left-0 bottom-0 w-72 bg-nav-bg shadow-lg z-[60] flex flex-col p-5 border-r border-nav-border">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-2.5">
-                   <img id="menu-logo" src="/icon.png" alt="Logo" class="w-8 h-8 bg-primary p-1 rounded-lg">
-                   <h2 id="menu-title" class="text-lg font-semibold text-inherit">Menu</h2>
-                </div>
-                <button id="close-menu-button" class="text-text-muted hover:text-primary p-1 rounded-full hover:bg-white/10">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+    <div id="notificationPopup" class="fixed top-16 sm:top-20 right-4 z-50 w-80 rounded-lg shadow-xl hidden glass-effect animate-slideInRight" role="alert" style="animation-duration: 0.3s;">
+        <div class="p-4">
+            <div class="flex items-center justify-between mb-3 border-b border-dark-600/60 pb-2.5">
+                <h3 class="text-base font-semibold text-gray-100 font-heading">Notifications</h3>
+                <button id="markAllRead" class="text-xs text-primary-400 hover:text-primary-300 transition-colors focus:outline-none font-medium hover:underline">Mark all as read</button>
             </div>
-            <nav class="flex-grow space-y-2 overflow-y-auto">
-                 <a href="#" data-section="apis" class="side-menu-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main bg-primary/10 font-medium">
-                     <i data-lucide="list" class="w-5 h-5 text-primary"></i>
-                     <span>APIs</span>
-                 </a>
-                 <a href="#" data-section="stats" class="side-menu-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/10 transition-colors">
-                     <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
-                     <span>Stats</span>
-                 </a>
-                 <a href="#" data-section="notifications" class="side-menu-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/10 transition-colors">
-                     <i data-lucide="bell" class="w-5 h-5"></i>
-                     <span>Notifications</span>
-                 </a>
-                 <div id="side-menu-links" class="mt-4 pt-4 border-t border-border-color space-y-2">
-                    <span class="text-xs font-semibold text-text-muted block px-3 uppercase">Links</span>
-                 </div>
-            </nav>
-             <div id="developer-link-container" class="mt-auto pt-4 border-t border-nav-border"></div>
+            <div id="notificationList" class="space-y-2.5 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin">
+                <div class="p-4 text-gray-500 text-center text-sm">All caught up!</div>
+            </div>
         </div>
-
-
     </div>
 
     <script>
-        const html = document.documentElement;
-        lucide.createIcons();
-
-        const apiResponseModal = document.getElementById('apiResponseModal');
-        const notificationPopupModal = document.getElementById('notificationPopupModal');
-        const menuButton = document.getElementById('menu-button');
-        const sideMenu = document.getElementById('side-menu');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const closeMenuButton = document.getElementById('close-menu-button');
-        const sideMenuItems = document.querySelectorAll('.side-menu-item');
-        const navItems = document.querySelectorAll('.nav-item');
-        const navIndicator = document.querySelector('.nav-indicator');
-        const contentSections = document.querySelectorAll('.content-section');
-        const apiSearchInput = document.getElementById('api-search');
-        const apiListContainer = document.getElementById('api-list-container');
-        const apiListLoading = document.getElementById('api-list-loading');
-        const notificationToggle = document.getElementById('notification-toggle');
-        const notificationBadge = document.getElementById('notification-badge');
-        const notificationPopupList = document.getElementById('notificationPopupList');
-        const noPopupNotifications = document.getElementById('no-popup-notifications');
-        const notificationsListSection = document.getElementById('notifications-list');
-        const noNotificationsSection = document.getElementById('no-notifications');
-        const markAllReadBtn = document.getElementById('markAllReadBtn');
-
-        let allApiData = [];
-        let settingsData = {};
-        let notifications = [];
-        const NOTIFICATION_STORAGE_KEY = 'api_dashboard_notifications';
-
-        const capitalizeFirstLetter = str => str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
-
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('show');
-                 if (modalId === 'notificationPopupModal') {
-                    notifications.forEach(n => n.read = true);
-                    saveNotifications();
-                    updateNotificationBadge();
-                    renderNotificationsPopup();
-                 }
-            }
+        function clearActionButtons(container) {
+            if (container) container.innerHTML = '';
         }
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) modal.classList.remove('show');
-        }
-
-        function openSideMenu() {
-            menuOverlay.classList.remove('hidden');
-            requestAnimationFrame(() => {
-                sideMenu.classList.add('open');
-                menuOverlay.classList.remove('opacity-0');
-            });
-        }
-
-        function closeSideMenu() {
-            sideMenu.classList.remove('open');
-            menuOverlay.classList.add('opacity-0');
-            setTimeout(() => menuOverlay.classList.add('hidden'), 300);
-        }
-
-        function setActiveSection(sectionName) {
-            const targetSectionId = `${sectionName}-section`;
-            const targetSection = document.getElementById(targetSectionId);
-
-            contentSections.forEach(section => section.classList.remove('active'));
-            if (targetSection) targetSection.classList.add('active');
-
-            const navItemCount = navItems.length;
-            const indicatorWidthPercent = 100 / navItemCount;
-            navItems.forEach((navItem, index) => {
-                const iconElement = navItem.querySelector('i[data-lucide]') || navItem.querySelector('svg');
-                if (navItem.dataset.section === sectionName) {
-                    navItem.classList.remove('text-text-muted');
-                    navItem.classList.add('text-primary');
-                    if (navIndicator) {
-                         navIndicator.style.width = `${indicatorWidthPercent}%`;
-                         navIndicator.style.transform = `translateX(${index * 100}%)`;
-                    }
-                    if(iconElement) iconElement.classList.add('text-primary');
-                } else {
-                    navItem.classList.remove('text-primary');
-                    navItem.classList.add('text-text-muted');
-                     if(iconElement) iconElement.classList.remove('text-primary');
-                }
-            });
-
-            sideMenuItems.forEach((sideItem) => {
-                 const iconElement = sideItem.querySelector('i[data-lucide]') || sideItem.querySelector('svg');
-                 if (sideItem.dataset.section === sectionName) {
-                     sideItem.classList.add('text-text-main', 'bg-primary/10', 'font-medium');
-                     sideItem.classList.remove('text-text-muted');
-                     if(iconElement) iconElement.classList.add('text-primary');
-                 } else {
-                     sideItem.classList.remove('text-text-main', 'bg-primary/10', 'font-medium');
-                     sideItem.classList.add('text-text-muted');
-                     if(iconElement) iconElement.classList.remove('text-primary');
-                 }
-             });
-
-             closeSideMenu();
-             window.scrollTo(0, 0);
-        }
-
-        function renderApiList(categories) {
-             apiListContainer.innerHTML = '';
-             if (!categories || categories.length === 0) {
-                 apiListContainer.innerHTML = '<p class="text-center text-text-muted py-6">No APIs found matching your search.</p>';
-                 return;
-             }
-
-             categories.forEach((category, categoryIndex) => {
-                 if (!category.items || category.items.length === 0) return;
-
-                 const categoryId = `category-${categoryIndex}`;
-                 const categoryElement = document.createElement('div');
-                 categoryElement.className = 'bg-bg-card rounded-xl border border-border-color shadow-card overflow-hidden';
-
-                 const categoryHeader = document.createElement('button');
-                 categoryHeader.className = 'w-full flex items-center justify-between p-4 text-left hover:bg-primary/10 transition-colors';
-                 categoryHeader.setAttribute('aria-expanded', 'false');
-                 categoryHeader.setAttribute('aria-controls', categoryId);
-                 categoryHeader.innerHTML = `
-                     <div class="flex items-center gap-2">
-                         <span class="font-semibold text-base">${capitalizeFirstLetter(category.name)}</span>
-                         <span class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">${category.items.length}</span>
-                     </div>
-                     <i data-lucide="chevron-down" class="w-5 h-5 category-arrow text-text-muted transition-transform"></i>
-                 `;
-
-                 const categoryContent = document.createElement('div');
-                 categoryContent.id = categoryId;
-                 categoryContent.className = 'category-content border-t border-border-color';
-
-                 category.items.forEach(item => {
-                     const method = item.method ? item.method.toLowerCase() : 'get';
-                     const methodColors = {
-                         get: 'method-get', post: 'method-post', put: 'method-put',
-                         delete: 'method-delete', patch: 'method-patch'
-                     };
-                     const colorBase = methodColors[method] || 'method-other';
-                     const bgColor = `bg-${colorBase}-bg`;
-                     const textColor = `text-${colorBase}-text`;
-                     const borderColor = `border-${colorBase}-border`;
-
-                     const itemElement = document.createElement('div');
-                     itemElement.className = 'flex items-center justify-between p-3 border-b border-border-color/50 last:border-b-0 hover:bg-primary/5 cursor-pointer transition-colors api-item';
-                     itemElement.dataset.apiPath = item.path;
-                     itemElement.dataset.apiName = item.name;
-                     itemElement.dataset.apiDesc = item.desc;
-                     itemElement.dataset.apiAuthor = item.author || '';
-                     itemElement.dataset.apiMethod = method;
-                     itemElement.innerHTML = `
-                         <span class="text-sm truncate pr-2">${capitalizeFirstLetter(item.name)}</span>
-                         <span class="${bgColor} ${textColor} border ${borderColor} px-2 py-0.5 text-xs rounded uppercase font-semibold">${method}</span>
-                     `;
-                     itemElement.addEventListener('click', () => handleApiClick(itemElement.dataset));
-                     categoryContent.appendChild(itemElement);
-                 });
-
-                 categoryElement.appendChild(categoryHeader);
-                 categoryElement.appendChild(categoryContent);
-                 apiListContainer.appendChild(categoryElement);
-
-                 categoryHeader.addEventListener('click', () => {
-                     const isExpanded = categoryHeader.getAttribute('aria-expanded') === 'true';
-                     categoryHeader.setAttribute('aria-expanded', !isExpanded);
-                     categoryContent.classList.toggle('open', !isExpanded);
-                     categoryHeader.querySelector('.category-arrow').classList.toggle('open', !isExpanded);
-                 });
-             });
-             lucide.createIcons();
-         }
-
-        function filterApiList() {
-             const searchTerm = apiSearchInput.value.toLowerCase().trim();
-             if (!allApiData.categories) return;
-
-             if (searchTerm === '') {
-                 renderApiList(allApiData.categories);
-                 return;
-             }
-
-             const filteredCategories = allApiData.categories.map(category => {
-                 const filteredItems = category.items.filter(item =>
-                     item.name.toLowerCase().includes(searchTerm) ||
-                     item.desc.toLowerCase().includes(searchTerm) ||
-                     item.path.toLowerCase().includes(searchTerm)
-                 );
-                 return { ...category, items: filteredItems };
-             }).filter(category => category.items.length > 0);
-
-             renderApiList(filteredCategories);
-
-             document.querySelectorAll('.category-content').forEach(content => content.classList.add('open'));
-             document.querySelectorAll('.category-arrow').forEach(arrow => arrow.classList.add('open'));
-             document.querySelectorAll('.category-item-header').forEach(header => header.setAttribute('aria-expanded', 'true'));
-         }
-
-         function handleApiClick(dataset) {
-            const { apiPath, apiName, apiDesc, apiAuthor, apiMethod } = dataset;
-            const method = apiMethod ? apiMethod.toLowerCase() : 'get';
-
-            const modalRefs = {
-                label: document.getElementById('apiResponseModalLabel'),
-                desc: document.getElementById('apiResponseModalDesc'),
-                content: document.getElementById('apiResponseContent'),
-                contentWrapper: document.getElementById('apiResponseContentWrapper'),
-                imageResponse: document.getElementById('apiImageResponse'),
-                errorContainer: document.getElementById('apiResponseError'),
-                endpoint: document.getElementById('apiEndpoint'),
-                spinner: document.getElementById('apiResponseLoading'),
-                queryInputContainer: document.getElementById('apiQueryInputContainer'),
-                submitBtn: document.getElementById('submitQueryBtn')
+        function addCopyButtonToContainer(container, textToCopy, label = 'Copy') {
+            if (!container) return;
+            const btn = document.createElement('button');
+            btn.className = 'copy-download-btn flex items-center space-x-1.5';
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg><span>${label}</span>`;
+            btn.onclick = () => {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg><span class="text-green-300">Copied!</span>`;
+                        setTimeout(() => {
+                            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg><span>${label}</span>`;
+                        }, 1600);
+                    })
+                    .catch(err => console.error('Copy failed:', err));
             };
-
-             modalRefs.label.textContent = capitalizeFirstLetter(apiName);
-             const capitalizedAuthor = apiAuthor ? ` | Author: ${capitalizeFirstLetter(apiAuthor)}` : '';
-             modalRefs.desc.textContent = `${capitalizeFirstLetter(apiDesc)}${capitalizedAuthor}`;
-             modalRefs.content.innerHTML = '';
-             modalRefs.imageResponse.innerHTML = '';
-             modalRefs.endpoint.textContent = '';
-             modalRefs.errorContainer.textContent = '';
-             modalRefs.spinner.classList.add('hidden');
-             modalRefs.contentWrapper.classList.add('hidden');
-             modalRefs.endpoint.classList.add('hidden');
-             modalRefs.errorContainer.classList.add('hidden');
-             modalRefs.queryInputContainer.innerHTML = '';
-             modalRefs.submitBtn.classList.add('hidden');
-             modalRefs.submitBtn.disabled = true;
-             modalRefs.submitBtn.onclick = null;
-
-             let baseApiUrl = `${window.location.origin}${apiPath.split('?')[0]}`;
-             let paramsString = apiPath.split('?')[1] || '';
-             let params = new URLSearchParams(paramsString);
-             let hasParams = false;
-
-             modalRefs.queryInputContainer.innerHTML = '';
-             Array.from(params.keys()).forEach(param => {
-                hasParams = true;
-                const inputGroup = document.createElement('div');
-                inputGroup.className = 'flex flex-col';
-                const label = document.createElement('label');
-                label.htmlFor = `param-${param}`;
-                label.className = 'text-xs font-medium text-text-muted mb-1 flex items-center gap-1';
-                label.innerHTML = `<i data-lucide="terminal" class="w-3 h-3"></i> ${capitalizeFirstLetter(param)}`;
-                const inputField = document.createElement('input');
-                inputField.type = 'text';
-                inputField.id = `param-${param}`;
-                inputField.className = 'w-full p-2.5 rounded-lg border bg-input-bg border-input-border text-text-main placeholder-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all text-sm';
-                inputField.placeholder = `Enter ${param}...`;
-                inputField.dataset.param = param;
-                inputField.required = true;
-                inputField.addEventListener('input', validateModalInputs);
-                inputGroup.appendChild(label);
-                inputGroup.appendChild(inputField);
-                modalRefs.queryInputContainer.appendChild(inputGroup);
-             });
-             lucide.createIcons();
-
-             if (hasParams) {
-                 modalRefs.submitBtn.classList.remove('hidden');
-                 validateModalInputs();
-                 modalRefs.submitBtn.onclick = async () => {
-                     const inputs = modalRefs.queryInputContainer.querySelectorAll('input[data-param]');
-                     const data = {};
-                     let isValid = true;
-                     inputs.forEach(input => {
-                         const value = input.value.trim();
-                         if (!value) {
-                             isValid = false;
-                             input.classList.add('border-red-500', 'focus:ring-red-500/20');
-                         } else {
-                             input.classList.remove('border-red-500', 'focus:ring-red-500/20');
-                             data[input.dataset.param] = value;
-                         }
-                     });
-
-                     if (!isValid) return;
-
-                     modalRefs.queryInputContainer.innerHTML = '<p class="text-xs text-text-muted">Parameters submitted...</p>';
-                     modalRefs.submitBtn.classList.add('hidden');
-
-                     if (method === 'get') {
-                         const newParams = new URLSearchParams(data);
-                         const apiUrlWithParams = `${baseApiUrl}?${newParams.toString()}`;
-                         handleApiRequest(apiUrlWithParams, modalRefs, apiName, 'get');
-                     } else if (method === 'post') {
-                         handleApiRequest(baseApiUrl, modalRefs, apiName, 'post', data);
-                     }
-                 };
-             } else {
-                 handleApiRequest(baseApiUrl, modalRefs, apiName, method);
-             }
-
-             openModal('apiResponseModal');
-         }
-
-        function validateModalInputs() {
-             const submitBtn = document.getElementById('submitQueryBtn');
-             const inputs = document.querySelectorAll('#apiQueryInputContainer input[data-param]');
-             if (!submitBtn || inputs.length === 0) return;
-
-             const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
-             submitBtn.disabled = !allFilled;
+            container.appendChild(btn);
         }
 
-         async function handleApiRequest(apiUrl, modalRefs, apiName, method = 'get', bodyData = null) {
-             modalRefs.spinner.classList.remove('hidden');
-             modalRefs.contentWrapper.classList.add('hidden');
-             modalRefs.errorContainer.classList.add('hidden');
-             modalRefs.endpoint.classList.add('hidden');
-             modalRefs.imageResponse.innerHTML = '';
-             modalRefs.content.innerHTML = '';
-
-             try {
-                 const fetchOptions = { method: method.toUpperCase() };
-                 if (method === 'post' && bodyData) {
-                     fetchOptions.headers = { 'Content-Type': 'application/json' };
-                     fetchOptions.body = JSON.stringify(bodyData);
-                 }
-
-                 const response = await fetch(apiUrl, fetchOptions);
-
-                 modalRefs.endpoint.textContent = `${method.toUpperCase()} ${apiUrl}`;
-                 modalRefs.endpoint.classList.remove('hidden');
-
-                 if (!response.ok) {
-                     let errorData;
-                     try {
-                         errorData = await response.json();
-                     } catch (e) {
-                         errorData = { message: await response.text() || `HTTP error! Status: ${response.status}` };
-                     }
-                     throw new Error(errorData.message || `Request failed with status ${response.status}`);
-                 }
-
-                 const contentType = response.headers.get('content-type');
-
-                 if (contentType && contentType.includes('application/json')) {
-                     const data = await response.json();
-                     const formattedJson = JSON.stringify(data, null, 2);
-                     modalRefs.content.textContent = formattedJson;
-                     highlightSyntax(modalRefs.content);
-                     modalRefs.contentWrapper.classList.remove('hidden');
-                 } else if (contentType && contentType.startsWith('image/')) {
-                     const blob = await response.blob();
-                     const imageUrl = URL.createObjectURL(blob);
-                     modalRefs.imageResponse.innerHTML = `<img src="${imageUrl}" alt="API Response Image" class="max-w-full h-auto rounded-lg border border-border-color">`;
-                     modalRefs.contentWrapper.classList.remove('hidden');
-                 } else {
-                     const textData = await response.text();
-                     modalRefs.content.textContent = textData;
-                     modalRefs.contentWrapper.classList.remove('hidden');
-                 }
-
-             } catch (error) {
-                 console.error('API Request Error:', error);
-                 modalRefs.errorContainer.textContent = `Error: ${error.message}`;
-                 modalRefs.errorContainer.classList.remove('hidden');
-             } finally {
-                 modalRefs.spinner.classList.add('hidden');
-             }
-         }
-
-         function highlightSyntax(element) {
-             const jsonText = element.textContent;
-             element.innerHTML = jsonText.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
-                 let cls = 'token number';
-                 if (/^"/.test(match)) {
-                     cls = /:$/.test(match) ? 'token property' : 'token string';
-                 } else if (/true|false/.test(match)) {
-                     cls = 'token boolean';
-                 } else if (/null/.test(match)) {
-                     cls = 'token null';
-                 }
-                 return `<span class="${cls}">${match}</span>`;
-             });
-         }
-
-        function loadNotifications() {
-          const saved = localStorage.getItem(NOTIFICATION_STORAGE_KEY);
-          return saved ? JSON.parse(saved) : [];
+        function addDownloadButtonToContainer(container, downloadUrl, filename, label = 'Download') {
+            if (!container) return;
+            const btn = document.createElement('button');
+            btn.className = 'copy-download-btn flex items-center space-x-1.5';
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg><span>${label}</span>`;
+            btn.onclick = () => {
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = filename || 'download';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                // Only revoke if it's a blob URL
+                if (downloadUrl.startsWith('blob:')) {
+                    URL.revokeObjectURL(downloadUrl);
+                }
+            };
+            container.appendChild(btn);
         }
 
-        function saveNotifications() {
-          localStorage.setItem(NOTIFICATION_STORAGE_KEY, JSON.stringify(notifications));
-        }
+        function animateLoading() {
+            const loadingBar = document.getElementById('loadingBar');
+            const loadingParticles = document.querySelector('.loading-particles');
+            if (!loadingBar || !loadingParticles) return;
 
-        function updateNotificationBadge() {
-          const unreadCount = notifications.filter(n => !n.read).length;
-          notificationBadge.textContent = unreadCount;
-          notificationBadge.classList.toggle('hidden', unreadCount === 0);
-        }
-
-        function renderNotificationsPopup() {
-           notificationPopupList.innerHTML = '';
-           const sortedNotifications = [...notifications].sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
-
-           if (sortedNotifications.length === 0) {
-               noPopupNotifications.classList.remove('hidden');
-               markAllReadBtn.classList.add('hidden');
-               return;
-           }
-
-           noPopupNotifications.classList.add('hidden');
-           markAllReadBtn.classList.remove('hidden');
-
-           sortedNotifications.forEach((notification, index) => {
-               const item = document.createElement('div');
-               item.className = `p-3 rounded-lg border flex items-start gap-3 ${notification.read ? 'bg-bg-card border-border-color' : 'bg-info-bg border-info-border'}`;
-               const icon = notification.read ? 'mail-open' : 'mail';
-               const color = notification.read ? 'text-text-muted' : 'text-primary';
-               item.innerHTML = `
-                 <i data-lucide="${icon}" class="w-5 h-5 ${color} flex-shrink-0 mt-0.5"></i>
-                 <div class="flex-1">
-                   <h4 class="font-semibold text-sm mb-0.5 ${notification.read ? 'text-text-main' : 'text-info-text'}">${notification.title}</h4>
-                   <p class="text-xs ${notification.read ? 'text-text-muted' : 'text-info-text'}">${notification.message}</p>
-                   ${notification.timestamp ? `<p class="text-xs text-text-muted mt-1">${new Date(notification.timestamp).toLocaleString()}</p>` : ''}
-                 </div>
-                 ${!notification.read ? '<div class="w-2 h-2 rounded-full bg-primary mt-1 flex-shrink-0 animate-pulse"></div>' : ''}
-               `;
-               notificationPopupList.appendChild(item);
-           });
-           lucide.createIcons();
-        }
-
-        function renderNotificationsSection() {
-            notificationsListSection.innerHTML = '';
-            const sortedNotifications = [...notifications].sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
-
-            if (sortedNotifications.length === 0) {
-                noNotificationsSection.classList.remove('hidden');
-                return;
+            for (let i = 0; i < 18; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'loading-particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 2.5}s`;
+                particle.style.width = `${Math.random() * 3 + 2}px`;
+                particle.style.height = particle.style.width;
+                particle.style.background = `rgba(${139 + Math.random()*60}, ${92 + Math.random()*60}, ${246 - Math.random()*60}, ${Math.random() * 0.4 + 0.4})`;
+                loadingParticles.appendChild(particle);
             }
-            noNotificationsSection.classList.add('hidden');
 
-             const typeMap = {
-                 'info': { icon: 'info', bg: 'bg-info-bg', text: 'text-info-text', border: 'border-info-border', iconColor: 'text-primary' },
-                 'warning': { icon: 'alert-triangle', bg: 'bg-warning-bg', text: 'text-warning-text', border: 'border-warning-border', iconColor: 'text-yellow-400' },
-                 'success': { icon: 'check-circle', bg: 'bg-success-bg', text: 'text-success-text', border: 'border-green-700/50', iconColor: 'text-green-400' },
-                 'error': { icon: 'alert-circle', bg: 'bg-error-bg', text: 'text-error-text', border: 'border-red-700/50', iconColor: 'text-red-400' }
-             };
-
-            sortedNotifications.forEach(notification => {
-                const type = notification.type || 'info';
-                const styles = typeMap[type] || typeMap['info'];
-                const item = document.createElement('div');
-                item.className = `flex items-start gap-3 p-3.5 ${styles.bg} rounded-lg border ${styles.border} shadow-sm`;
-                item.innerHTML = `
-                    <i data-lucide="${styles.icon}" class="w-5 h-5 ${styles.iconColor} flex-shrink-0 mt-0.5"></i>
-                    <div class="flex-1">
-                      <span class="text-sm ${styles.text}">${notification.title}: ${notification.message}</span>
-                       ${notification.timestamp ? `<p class="text-xs text-text-muted mt-1">${new Date(notification.timestamp).toLocaleString()}</p>` : ''}
-                    </div>
-                `;
-                notificationsListSection.appendChild(item);
-            });
-            lucide.createIcons();
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    width += 1;
+                    loadingBar.style.width = width + '%';
+                }
+            }, 18);
         }
+        window.addEventListener('load', animateLoading);
 
-        function initializeNotifications(settingNotifications) {
-            const storedNotifications = loadNotifications();
-            const combinedNotifications = new Map();
+        document.addEventListener('DOMContentLoaded', async () => {
+            const capitalizeFirstLetter = str => str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
+            const navMenu = document.getElementById('navMenu');
+            const navMenuToggle = document.getElementById('navMenuToggle');
+            const closeNavMenu = document.getElementById('closeNavMenu');
+            const navMenuBackdrop = document.getElementById('navMenuBackdrop');
+            const navMenuItems = document.querySelectorAll('.nav-menu-item');
+            const pages = document.querySelectorAll('.page-container');
+            const navbar = document.getElementById('navbar');
+            const navbarSeparator = document.getElementById('navbarSeparator');
+            const navbarBrand = document.getElementById('navbarBrand');
+            const navbarBgEffect = document.getElementById('navbarBgEffect');
+            const homeCategoryCount = document.getElementById('homeCategoryCount');
+            const notificationToggle = document.getElementById('notificationToggle');
+            const notificationBadge = document.getElementById('notificationBadge');
+            const notificationPopup = document.getElementById('notificationPopup');
+            const notificationList = document.getElementById('notificationList');
+            const markAllReadButton = document.getElementById('markAllRead');
+            const apiResponseModal = document.getElementById('apiResponseModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const apiEndpointEl = document.getElementById('apiEndpoint');
+            const apiEndpointActions = document.getElementById('apiEndpointActions');
+            const apiResponseContentEl = document.getElementById('apiResponseContent');
+            const apiResponseImageContainer = document.getElementById('apiResponseImageContainer');
+            const apiResponseContentWrapper = document.getElementById('apiResponseContentWrapper');
+            const apiResponseActions = document.getElementById('apiResponseActions');
+            const apiResponseLoading = document.getElementById('apiResponseLoading');
+            const apiQueryInputContainer = document.getElementById('apiQueryInputContainer');
+            const submitQueryBtn = document.getElementById('submitQueryBtn');
+            const modalLabel = document.getElementById('apiResponseModalLabel');
+            const modalDesc = document.getElementById('apiResponseModalDesc');
 
-            storedNotifications.forEach(n => combinedNotifications.set(n.id || (n.title + n.message), n));
+            const ACTIVE_PAGE_KEY = 'dashboard_active_page_v3';
+            const NOTIFICATION_STORAGE_KEY = 'dashboard_notifications_v3_persistent_read';
+            let notifications = [];
+            let apiCategories = [];
+            const methodColors = {
+                get: {
+                    bg: 'bg-green-500/10',
+                    text: 'text-green-300',
+                    border: 'border-green-500/20'
+                },
+                post: {
+                    bg: 'bg-blue-500/10',
+                    text: 'text-blue-300',
+                    border: 'border-blue-500/20'
+                },
+                put: {
+                    bg: 'bg-yellow-500/10',
+                    text: 'text-yellow-300',
+                    border: 'border-yellow-500/20'
+                },
+                delete: {
+                    bg: 'bg-red-500/10',
+                    text: 'text-red-400',
+                    border: 'border-red-500/20'
+                },
+                patch: {
+                    bg: 'bg-purple-500/10',
+                    text: 'text-purple-300',
+                    border: 'border-purple-500/20'
+                }
+            };
+            let activeFocusTrapRemover = null;
 
-            if (Array.isArray(settingNotifications)) {
-                settingNotifications.forEach(n => {
-                    const id = n.id || (n.title + n.message);
-                    if (!combinedNotifications.has(id)) {
-                        combinedNotifications.set(id, { ...n, read: false, timestamp: Date.now() });
+            function saveActivePage(pageId) {
+                localStorage.setItem(ACTIVE_PAGE_KEY, pageId);
+            }
+
+            function loadActivePage() {
+                const savedPage = localStorage.getItem(ACTIVE_PAGE_KEY) || 'home';
+                const targetMenuItem = document.querySelector(`.nav-menu-item[data-page="${savedPage}"]`);
+                if (targetMenuItem) setActivePage(savedPage, targetMenuItem, false);
+                else setActivePage('home', document.querySelector('.nav-menu-item[data-page="home"]'), false);
+            }
+
+            window.setActivePage = (pageId, menuItem, animate = true) => {
+                navMenuItems.forEach(item => item.classList.remove('active'));
+                if (menuItem) menuItem.classList.add('active');
+                else {
+                    const fallbackItem = document.querySelector(`.nav-menu-item[data-page="${pageId}"]`);
+                    if (fallbackItem) fallbackItem.classList.add('active');
+                }
+                pages.forEach(page => {
+                    const isTarget = page.id === `${pageId}Page`;
+                    page.classList.toggle('hidden', !isTarget);
+                    if (isTarget) {
+                        requestAnimationFrame(() => {
+                            page.classList.add('active');
+                        });
                     } else {
-                         const existing = combinedNotifications.get(id);
-                         combinedNotifications.set(id, { ...n, read: existing.read, timestamp: existing.timestamp || Date.now() });
+                        page.classList.remove('active');
                     }
+                });
+                saveActivePage(pageId);
+                window.scrollTo({
+                    top: 0,
+                    behavior: animate ? 'smooth' : 'auto'
                 });
             }
 
-            notifications = Array.from(combinedNotifications.values());
-            saveNotifications();
-            updateNotificationBadge();
-            renderNotificationsPopup();
-            renderNotificationsSection();
-        }
+            function toggleNavMenu() {
+                const isOpen = navMenu.classList.contains('active');
+                navMenu.classList.toggle('active', !isOpen);
+                navMenuBackdrop.classList.toggle('active', !isOpen);
+                document.body.classList.toggle('overflow-hidden', !isOpen && window.innerWidth < 1024);
+            }
 
-        function setupDynamicContent(settings) {
-             document.getElementById('page-title').textContent = settings.name || 'API Dashboard';
-             document.getElementById('header-title').textContent = settings.name || 'Dashboard';
-             document.getElementById('menu-title').textContent = settings.name || 'Menu';
-             document.getElementById('header-version').textContent = settings.version || 'v1.0';
+            navMenuToggle.addEventListener('click', toggleNavMenu);
+            closeNavMenu.addEventListener('click', toggleNavMenu);
+            navMenuBackdrop.addEventListener('click', toggleNavMenu);
 
-             if (settings.logoSrc) {
-                 document.getElementById('header-logo').src = settings.logoSrc;
-                 document.getElementById('menu-logo').src = settings.logoSrc;
-             }
-
-             const apiLinksContainer = document.getElementById('apiLinks');
-             const sideMenuLinksContainer = document.getElementById('side-menu-links');
-             const devLinkContainer = document.getElementById('developer-link-container');
-             apiLinksContainer.innerHTML = '';
-             sideMenuLinksContainer.innerHTML = '<span class="text-xs font-semibold text-text-muted block px-3 uppercase">Links</span>';
-             devLinkContainer.innerHTML = '';
-
-             if (settings.links && settings.links.length > 0) {
-                 settings.links.forEach(link => {
-                     const linkEl = document.createElement('a');
-                     linkEl.href = link.url;
-                     linkEl.target = '_blank';
-                     linkEl.rel = 'noopener noreferrer';
-                     linkEl.className = 'inline-block bg-primary/10 text-primary text-xs font-medium px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors';
-                     linkEl.textContent = link.name;
-                     apiLinksContainer.appendChild(linkEl);
-
-                     const sideMenuLink = document.createElement('a');
-                     sideMenuLink.href = link.url;
-                     sideMenuLink.target = '_blank';
-                     sideMenuLink.rel = 'noopener noreferrer';
-                     sideMenuLink.className = 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/10 transition-colors';
-                     sideMenuLink.innerHTML = `<i data-lucide="link-2" class="w-5 h-5"></i><span>${link.name}</span>`;
-                     sideMenuLinksContainer.appendChild(sideMenuLink);
-                 });
-             } else {
-                 apiLinksContainer.innerHTML = '<p class="text-xs text-text-muted">No links available.</p>';
-                 sideMenuLinksContainer.classList.add('hidden');
-             }
-
-             if (settings.developerLink) {
-                 const devLink = document.createElement('a');
-                 devLink.href = settings.developerLink.url;
-                 devLink.target = '_blank';
-                 devLink.rel = 'noopener noreferrer';
-                 devLink.className = 'flex items-center justify-center gap-2 w-full bg-primary/10 text-primary py-2.5 px-4 rounded-lg font-semibold text-sm hover:bg-primary/20 transition-all duration-300 shadow-sm active:scale-[0.98]';
-                 devLink.innerHTML = `<i data-lucide="code" class="w-4 h-4"></i><span>${settings.developerLink.name || 'Developer Profile'}</span>`;
-                 devLinkContainer.appendChild(devLink);
-             }
-
-             lucide.createIcons();
-        }
-
-        function setupStats(apiInfo) {
-             let totalApis = 0, getEndpoints = 0, postEndpoints = 0;
-             if (apiInfo.categories) {
-                 apiInfo.categories.forEach(category => {
-                     totalApis += category.items.length;
-                     category.items.forEach(item => {
-                         const method = item.method ? item.method.toLowerCase() : 'get';
-                         if (method === 'get') getEndpoints++;
-                         else if (method === 'post') postEndpoints++;
-                     });
-                 });
-             }
-             document.getElementById('totalApis').textContent = totalApis;
-             document.getElementById('totalCategories').textContent = apiInfo.categories ? apiInfo.categories.length : 0;
-             document.getElementById('getEndpoints').textContent = getEndpoints;
-             document.getElementById('postEndpoints').textContent = postEndpoints;
-        }
-
-        async function initializeApp() {
-             try {
-                 const [settingsResponse, apiInfoResponse] = await Promise.all([
-                     fetch('/settings.json'),
-                     fetch('/api/info')
-                 ]);
-
-                 if (!settingsResponse.ok) throw new Error(`Failed to load settings: ${settingsResponse.statusText}`);
-                 if (!apiInfoResponse.ok) throw new Error(`Failed to load API info: ${apiInfoResponse.statusText}`);
-
-                 settingsData = await settingsResponse.json();
-                 allApiData = await apiInfoResponse.json();
-
-                 setupDynamicContent(settingsData);
-                 setupStats(allApiData);
-
-                 const sortedCategories = allApiData.categories ? [...allApiData.categories].sort((a, b) => a.name.localeCompare(b.name)) : [];
-                 allApiData.categories = sortedCategories.map(cat => ({
-                    ...cat,
-                    items: cat.items ? [...cat.items].sort((a, b) => a.name.localeCompare(b.name)) : []
-                 }));
-
-                 apiListLoading.classList.add('hidden');
-                 renderApiList(allApiData.categories);
-                 initializeNotifications(settingsData.notifications);
-
-             } catch (error) {
-                 console.error("Initialization failed:", error);
-                 apiListContainer.innerHTML = `<p class="text-center text-error-text py-6">Error loading dashboard data: ${error.message}</p>`;
-                 apiListLoading.classList.add('hidden');
-             } finally {
-                 document.getElementById('loadingScreen').style.display = 'none';
-             }
-         }
-
-        if(menuButton) menuButton.addEventListener('click', openSideMenu);
-        if(closeMenuButton) closeMenuButton.addEventListener('click', closeSideMenu);
-        if(menuOverlay) menuOverlay.addEventListener('click', closeSideMenu);
-
-        navItems.forEach((item) => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                setActiveSection(this.dataset.section);
+            navMenuItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPage = item.dataset.page;
+                    setActivePage(targetPage, item);
+                    if (window.innerWidth < 1024) toggleNavMenu();
+                });
             });
+
+            document.addEventListener('click', event => {
+                const apiItem = event.target.closest('.category-grid-item');
+                if (apiItem) handleApiClick(apiItem.dataset);
+                const viewAllBtn = event.target.closest('.view-all-btn');
+                if (viewAllBtn) showAllEndpointsModal(viewAllBtn.dataset.categoryId);
+                if (!notificationPopup.contains(event.target) && event.target !== notificationToggle && !notificationToggle.contains(event.target)) {
+                    notificationPopup.classList.add('hidden');
+                }
+            });
+
+            function showAllEndpointsModal(categoryId) {
+                const category = apiCategories.find(cat => cat.id === categoryId);
+                if (!category) return;
+
+                const modalId = `category-modal-${categoryId}`;
+                if (document.getElementById(modalId)) return;
+
+                const modal = document.createElement('div');
+                modal.id = modalId;
+                modal.className = 'dynamic-modal fixed inset-0 z-[60] overflow-y-auto p-4 flex items-center justify-center animate-fadeIn';
+                modal.setAttribute('role', 'dialog');
+                modal.setAttribute('aria-modal', 'true');
+                modal.setAttribute('aria-labelledby', `${modalId}-title`);
+
+                const modalContent = document.createElement('div');
+                modalContent.className = 'modal-content-area rounded-xl w-full max-w-2xl max-h-[80vh] flex flex-col relative';
+
+                const header = document.createElement('header');
+                header.className = 'flex justify-between items-center p-5 border-b border-dark-700/60 sticky top-0 z-10 bg-gradient-to-r from-dark-800/90 to-dark-700/90 backdrop-blur-sm rounded-t-xl';
+                header.innerHTML = `
+              <div>
+                <h3 class="text-lg font-semibold gradient-text font-heading tracking-tight" id="${modalId}-title">${capitalizeFirstLetter(category.name)}</h3>
+                <p class="text-gray-400 text-sm mt-1">${category.items.length} endpoints</p>
+              </div>
+              <button type="button" class="close-category-modal-btn icon-button text-gray-400 hover:text-gray-100 p-1.5 hover:bg-dark-600/70 transition-colors" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            `;
+
+                const body = document.createElement('div');
+                body.className = 'p-5 overflow-y-auto flex-1 scrollbar-thin';
+                const endpointsList = document.createElement('div');
+                endpointsList.className = 'space-y-3';
+
+                const sortedItems = [...category.items].sort((a, b) => a.name.localeCompare(b.name));
+                sortedItems.forEach(item => {
+                    const method = item.method.toLowerCase();
+                    const color = methodColors[method] || methodColors.get;
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'p-3.5 bg-dark-700/40 rounded-lg hover:bg-dark-600/60 transition-all duration-200 cursor-pointer flex justify-between items-center border border-dark-600/30 hover:border-primary-700/40 hover:shadow-md';
+                    itemEl.dataset.apiPath = item.path;
+                    itemEl.dataset.apiName = item.name;
+                    itemEl.dataset.apiDesc = item.desc;
+                    itemEl.dataset.apiAuthor = item.author || '';
+                    itemEl.dataset.apiMethod = method;
+                    itemEl.innerHTML = `
+                <div>
+                  <div class="font-medium text-gray-200 text-sm">${capitalizeFirstLetter(item.name)}</div>
+                  <div class="text-xs text-gray-400 mt-0.5">${item.desc}</div>
+                </div>
+                <span class="method-badge ${color.bg} ${color.text} border ${color.border} px-2.5 py-1 text-[11px] rounded-md uppercase font-semibold tracking-wide">${method}</span>
+              `;
+                    itemEl.addEventListener('click', () => {
+                        handleApiClick(itemEl.dataset);
+                        closeModal(modal);
+                    });
+                    endpointsList.appendChild(itemEl);
+                });
+
+                body.appendChild(endpointsList);
+                modalContent.appendChild(header);
+                modalContent.appendChild(body);
+                modal.appendChild(modalContent);
+                document.body.appendChild(modal);
+                document.body.classList.add('modal-open');
+                requestAnimationFrame(() => {
+                    modal.classList.add('visible');
+                    modalContent.classList.add('visible');
+                });
+                activateFocusTrap(modal);
+
+                const closeBtn = modal.querySelector('.close-category-modal-btn');
+                closeBtn.addEventListener('click', () => closeModal(modal));
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal(modal);
+                });
+            }
+
+            function handleApiClick(dataset) {
+                const {
+                    apiPath,
+                    apiName,
+                    apiDesc,
+                    apiAuthor,
+                    apiMethod
+                } = dataset;
+                const method = apiMethod ? apiMethod.toLowerCase() : 'get';
+
+                openModal();
+
+                modalLabel.textContent = capitalizeFirstLetter(apiName);
+                modalDesc.textContent = `${capitalizeFirstLetter(apiDesc)} ${apiAuthor ? 'by ' + capitalizeFirstLetter(apiAuthor) : ''}`;
+                apiResponseContentEl.textContent = '';
+                apiResponseImageContainer.innerHTML = '';
+                apiEndpointEl.textContent = '';
+                apiResponseLoading.classList.add('hidden');
+                apiResponseContentEl.classList.add('hidden');
+                apiResponseImageContainer.classList.add('hidden');
+                apiResponseContentWrapper.classList.add('hidden');
+                apiQueryInputContainer.innerHTML = '';
+                submitQueryBtn.classList.add('hidden');
+                clearActionButtons(apiEndpointActions);
+                clearActionButtons(apiResponseActions);
+
+                let baseApiUrl = `${window.location.origin}${apiPath.split('?')[0]}`;
+                let paramsString = apiPath.split('?')[1] || '';
+                let params = new URLSearchParams(paramsString);
+                let hasParams = Array.from(params.keys()).length > 0;
+
+                apiEndpointEl.textContent = baseApiUrl + (paramsString ? `?${paramsString}` : '');
+                addCopyButtonToContainer(apiEndpointActions, apiEndpointEl.textContent, 'Copy URL');
+
+                if (hasParams && method === 'get') {
+                    const paramContainer = document.createElement('div');
+                    paramContainer.className = 'space-y-4 border-t border-dark-700/50 pt-6';
+                    const formTitle = document.createElement('label');
+                    formTitle.className = 'block text-sm font-medium text-gray-300 mb-3';
+                    formTitle.textContent = 'Query Parameters';
+                    paramContainer.appendChild(formTitle);
+
+                    Array.from(params.keys()).forEach(param => {
+                        const inputGroup = document.createElement('div');
+                        const label = document.createElement('label');
+                        label.htmlFor = `param-${param}`;
+                        label.className = 'block text-xs font-medium text-gray-400 mb-1.5';
+                        label.textContent = capitalizeFirstLetter(param);
+                        const inputField = document.createElement('input');
+                        inputField.type = 'text';
+                        inputField.id = `param-${param}`;
+                        inputField.className = 'input-field w-full text-sm';
+                        inputField.placeholder = `Enter value for ${param}...`;
+                        inputField.dataset.param = param;
+                        inputField.value = params.get(param) || '';
+                        inputField.required = true;
+                        inputField.addEventListener('input', validateInputs);
+                        inputGroup.appendChild(label);
+                        inputGroup.appendChild(inputField);
+                        paramContainer.appendChild(inputGroup);
+                    });
+                    apiQueryInputContainer.appendChild(paramContainer);
+                    submitQueryBtn.classList.remove('hidden');
+                    submitQueryBtn.disabled = true;
+                    validateInputs();
+
+                    submitQueryBtn.onclick = async () => {
+                        const inputs = document.querySelectorAll('#apiQueryInputContainer input');
+                        const currentParams = new URLSearchParams();
+                        let isValid = true;
+                        inputs.forEach(input => {
+                            if (!input.value.trim()) isValid = false;
+                            currentParams.set(input.dataset.param, input.value.trim());
+                        });
+
+                        if (!isValid) return;
+
+                        submitQueryBtn.disabled = true;
+                        submitQueryBtn.innerHTML = `<span class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span> Processing...`;
+
+                        const apiUrlWithParams = `${baseApiUrl}?${currentParams.toString()}`;
+                        apiEndpointEl.textContent = apiUrlWithParams;
+                        clearActionButtons(apiEndpointActions);
+                        addCopyButtonToContainer(apiEndpointActions, apiUrlWithParams, 'Copy URL');
+
+                        await handleApiRequest(apiUrlWithParams, apiName, 'get');
+
+                        submitQueryBtn.disabled = false;
+                        submitQueryBtn.innerHTML = 'Submit Request';
+                        validateInputs();
+                    };
+                } else {
+                    handleApiRequest(baseApiUrl + (paramsString ? `?${paramsString}` : ''), apiName, method);
+                }
+            }
+
+            function validateInputs() {
+                const inputs = document.querySelectorAll('#apiQueryInputContainer input');
+                const isValid = Array.from(inputs).every(input => input.value.trim() !== '');
+                submitQueryBtn.disabled = !isValid;
+            }
+
+            async function handleApiRequest(apiUrl, apiName, method = 'get', bodyData = null) {
+                apiResponseLoading.classList.remove('hidden');
+                apiResponseContentEl.classList.add('hidden');
+                apiResponseImageContainer.classList.add('hidden');
+                apiResponseContentWrapper.classList.add('hidden');
+                clearActionButtons(apiResponseActions);
+
+                try {
+                    const options = {
+                        method: method.toUpperCase()
+                    };
+                    if (method === 'post' && bodyData) {
+                        options.headers = {
+                            'Content-Type': 'application/json'
+                        };
+                        options.body = JSON.stringify(bodyData);
+                    }
+
+                    const response = await fetch(apiUrl, options);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+
+                    const contentType = response.headers.get('content-type');
+                    apiResponseContentWrapper.classList.remove('hidden');
+
+                    if (contentType && contentType.includes('image')) {
+                        const blob = await response.blob();
+                        const imageUrl = URL.createObjectURL(blob);
+                        const img = document.createElement('img');
+                        img.src = imageUrl;
+                        img.alt = `${apiName} response image`;
+                        img.className = 'max-w-full h-auto rounded-md mx-auto block shadow-md';
+                        apiResponseImageContainer.innerHTML = '';
+                        apiResponseImageContainer.appendChild(img);
+                        apiResponseImageContainer.classList.remove('hidden');
+                        apiResponseContentEl.classList.add('hidden');
+                        addDownloadButtonToContainer(apiResponseActions, imageUrl, `${apiName}.${contentType.split('/')[1] || 'png'}`);
+                        addCopyButtonToContainer(apiResponseActions, apiUrl, 'Copy Image URL');
+                    } else if (contentType && contentType.includes('json')) {
+                        const data = await response.json();
+                        const formattedJson = JSON.stringify(data, null, 2);
+                        apiResponseContentEl.innerHTML = syntaxHighlightJson(formattedJson);
+                        apiResponseContentEl.classList.remove('hidden');
+                        apiResponseImageContainer.classList.add('hidden');
+                        addCopyButtonToContainer(apiResponseActions, formattedJson, 'Copy JSON');
+                    } else {
+                        const textData = await response.text();
+                        apiResponseContentEl.textContent = textData;
+                        apiResponseContentEl.classList.remove('hidden');
+                        apiResponseImageContainer.classList.add('hidden');
+                        addCopyButtonToContainer(apiResponseActions, textData, 'Copy Text');
+                    }
+                } catch (error) {
+                    console.error('API Request Error:', error);
+                    apiResponseContentEl.innerHTML = `<span class="text-red-400 font-semibold">Error:</span> ${error.message}`;
+                    apiResponseContentEl.className = 'p-4 text-sm font-mono text-gray-300';
+                    apiResponseContentWrapper.classList.remove('hidden');
+                    apiResponseContentEl.classList.remove('hidden');
+                    apiResponseImageContainer.classList.add('hidden');
+                } finally {
+                    apiResponseLoading.classList.add('hidden');
+                }
+            }
+
+            function syntaxHighlightJson(json) {
+                json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
+                    let cls = 'text-yellow-300';
+                    if (/^"/.test(match)) {
+                        cls = /:$/.test(match) ? 'text-purple-300 font-medium' : 'text-green-300';
+                    } else if (/\b(true|false)\b/.test(match)) {
+                        cls = 'text-blue-300 font-medium';
+                    } else if (/\bnull\b/.test(match)) {
+                        cls = 'text-red-400 font-medium';
+                    }
+                    return `<span class="${cls}">${match}</span>`;
+                });
+            }
+
+            function openModal() {
+                apiResponseModal.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    apiResponseModal.classList.add('visible');
+                    apiResponseModal.querySelector('.modal-content-area').classList.add('visible');
+                });
+                document.body.classList.add('modal-open');
+                activateFocusTrap(apiResponseModal);
+            }
+
+            function closeModal(modalElement = apiResponseModal) {
+                if (!modalElement || modalElement.classList.contains('hidden')) return;
+                const contentArea = modalElement.querySelector('.modal-content-area');
+                modalElement.classList.remove('visible');
+                if (contentArea) contentArea.classList.remove('visible');
+                deactivateFocusTrap();
+
+                modalElement.addEventListener('transitionend', () => {
+                    modalElement.classList.add('hidden');
+                    if (modalElement.classList.contains('dynamic-modal')) {
+                        try {
+                            document.body.removeChild(modalElement);
+                        } catch (e) {}
+                    }
+                    if (!document.querySelector('#apiResponseModal:not(.hidden), .dynamic-modal:not(.hidden)')) {
+                        document.body.classList.remove('modal-open');
+                    }
+                }, {
+                    once: true
+                });
+            }
+
+            closeModalBtn.addEventListener('click', () => closeModal());
+            apiResponseModal.addEventListener('click', e => {
+                if (e.target === apiResponseModal) closeModal();
+            });
+
+            notificationToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationPopup.classList.toggle('hidden');
+                if (!notificationPopup.classList.contains('hidden')) renderNotifications();
+            });
+
+            markAllReadButton.addEventListener('click', () => {
+                notifications = notifications.map(n => ({
+                    ...n,
+                    read: true
+                }));
+                saveNotifications();
+                updateNotificationBadge();
+                renderNotifications();
+            });
+
+            function updateNavbarAppearance() {
+                const scrolled = window.scrollY > 10;
+                navbar.classList.toggle('h-16', !scrolled);
+                navbar.classList.toggle('h-14', scrolled);
+                navbarBgEffect.classList.toggle('opacity-100', scrolled);
+                navbarBgEffect.classList.toggle('bg-dark-900/80', scrolled);
+                navbarBgEffect.classList.toggle('backdrop-blur-lg', scrolled);
+                navbarBgEffect.classList.toggle('shadow-lg', scrolled);
+                navbarSeparator.classList.toggle('opacity-100', scrolled);
+                navbarBrand.classList.toggle('opacity-100', scrolled);
+            }
+            window.addEventListener('scroll', updateNavbarAppearance, {
+                passive: true
+            });
+
+            function loadNotifications() {
+                const saved = localStorage.getItem(NOTIFICATION_STORAGE_KEY);
+                try {
+                    return saved ? JSON.parse(saved) : [];
+                } catch (e) {
+                    console.error("Error parsing notifications:", e);
+                    return [];
+                }
+            }
+
+            function saveNotifications() {
+                localStorage.setItem(NOTIFICATION_STORAGE_KEY, JSON.stringify(notifications));
+            }
+
+            function updateNotificationBadge() {
+                const unread = notifications.filter(n => !n.read).length;
+                notificationBadge.textContent = unread;
+                notificationBadge.classList.toggle('hidden', unread === 0);
+            }
+
+            function renderNotifications() {
+                notificationList.innerHTML = '';
+                if (notifications.length === 0) {
+                    notificationList.innerHTML = '<div class="p-4 text-gray-500 text-center text-sm">All caught up!</div>';
+                    return;
+                }
+
+                notifications.forEach((n) => {
+                    const el = document.createElement('div');
+                    el.className = `p-3 rounded-lg transition-colors duration-200 ease-in-out cursor-pointer ${n.read ? 'bg-dark-700/20 hover:bg-dark-700/40 opacity-70' : 'bg-gradient-to-r from-dark-700/50 to-dark-600/50 hover:from-dark-700/70 hover:to-dark-600/70 shadow-sm'}`;
+                    el.innerHTML = `
+                  <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 pt-1">
+                      <div class="w-2 h-2 rounded-full ${n.read ? 'bg-gray-600' : 'bg-primary-400 animate-pulse'}"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="text-sm font-semibold truncate ${n.read ? 'text-gray-400' : 'text-gray-100'}">${n.title}</h4>
+                      <p class="text-xs mt-0.5 ${n.read ? 'text-gray-500' : 'text-gray-400'}">${n.message}</p>
+                    </div>
+                  </div>
+                `;
+                    el.addEventListener('click', () => {
+                        const originalIndex = notifications.findIndex(orig => orig.id === n.id);
+                        if (originalIndex !== -1 && !notifications[originalIndex].read) {
+                            notifications[originalIndex].read = true;
+                            saveNotifications();
+                            updateNotificationBadge();
+                            renderNotifications();
+                        }
+                    });
+                    notificationList.appendChild(el);
+                });
+            }
+
+
+            function setElementContent(id, value, property = 'textContent') {
+                const el = document.getElementById(id);
+                if (el) el[property] = value;
+            }
+
+            async function initializeDashboard() {
+                try {
+                    const [settingsResponse, apiInfoResponse] = await Promise.all([
+                        fetch('/settings.json').catch(e => ({
+                            ok: false,
+                            error: e
+                        })),
+                        fetch('/api/info').catch(e => ({
+                            ok: false,
+                            error: e
+                        }))
+                    ]);
+
+                    const settings = settingsResponse.ok ? await settingsResponse.json() : {
+                        name: "API Dashboard",
+                        version: "v1.0",
+                        description: "Default description",
+                        header: {
+                            status: "Offline",
+                            imageSrc: "/placeholder.svg"
+                        },
+                        links: [],
+                        notifications: []
+                    };
+                    const apiInfo = apiInfoResponse.ok ? await apiInfoResponse.json() : {
+                        categories: []
+                    };
+
+                    if (!settingsResponse.ok) console.warn('Failed to load settings.json:', settingsResponse.error);
+                    if (!apiInfoResponse.ok) console.warn('Failed to load /api/info:', apiInfoResponse.error);
+
+                    document.title = settings.name || "API Dashboard";
+                    setElementContent('header', settings.name || "API Dashboard");
+                    setElementContent('name', settings.name || "API Dashboard");
+                    setElementContent('version', settings.version || "v1.0");
+                    setElementContent('versionHeader', settings.header?.version || settings.version || "v1.0");
+                    setElementContent('description', settings.description || "Interactive API Explorer");
+                    setElementContent('headerStatusText', settings.header?.status || "Status Unknown");
+
+                    const dynamicImage = document.getElementById('dynamicImage');
+                    if (dynamicImage && settings.header?.imageSrc) {
+                        let src = Array.isArray(settings.header.imageSrc) ? settings.header.imageSrc[Math.floor(Math.random() * settings.header.imageSrc.length)] : settings.header.imageSrc;
+                        dynamicImage.src = src;
+                        dynamicImage.alt = `${settings.name || "Dashboard"} banner`;
+                    }
+
+                    const apiLinksContainer = document.getElementById('apiLinks');
+                    apiLinksContainer.innerHTML = '';
+                    if (settings.links?.length) {
+                        settings.links.forEach(({
+                            url,
+                            name
+                        }) => {
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.textContent = name;
+                            link.target = '_blank';
+                            link.rel = 'noopener noreferrer';
+                            link.className = 'small-frosted-card inline-flex items-center text-sm';
+                            apiLinksContainer.appendChild(link);
+                        });
+                    }
+                    
+                    const loadedNotifications = loadNotifications();
+                    const notificationMap = new Map(loadedNotifications.map(n => [n.id || (n.title + "::" + n.message), n]));
+
+                    (settings.notifications || []).forEach((n, index) => {
+                        const key = n.id || (n.title + "::" + n.message + "::" + index);
+
+                        if (notificationMap.has(key)) {
+                            const existingNotification = notificationMap.get(key);
+                            notificationMap.set(key, {
+                                ...n,
+                                id: key,
+                                read: existingNotification.read,
+                                timestamp: existingNotification.timestamp || Date.now()
+                            });
+                        } else {
+                            notificationMap.set(key, {
+                                ...n,
+                                id: key,
+                                read: false,
+                                timestamp: Date.now()
+                            });
+                        }
+                    });
+
+                    notifications = Array.from(notificationMap.values()).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    saveNotifications();
+                    updateNotificationBadge();
+
+
+                    const sortedCategories = apiInfo.categories.sort((a, b) => a.name.localeCompare(b.name));
+                    apiCategories = sortedCategories.map((cat, idx) => ({
+                        ...cat,
+                        id: `cat-${idx}`
+                    }));
+
+                    let totalApis = 0,
+                        methodCounts = {
+                            get: 0,
+                            post: 0,
+                            put: 0,
+                            delete: 0,
+                            patch: 0,
+                            other: 0
+                        };
+                    apiCategories.forEach(category => {
+                        totalApis += category.items.length;
+                        (category.items || []).forEach(item => {
+                            const method = (item.method || '').toLowerCase();
+                            if (methodCounts.hasOwnProperty(method)) methodCounts[method]++;
+                            else methodCounts.other++;
+                        });
+                    });
+
+                    setElementContent('totalApis', totalApis);
+                    setElementContent('totalCategories', apiCategories.length);
+                    setElementContent('getEndpoints', methodCounts.get);
+                    setElementContent('postEndpoints', methodCounts.post);
+                    if (homeCategoryCount) homeCategoryCount.textContent = `${apiCategories.length} Categories`;
+
+                    const totalMethods = Math.max(1, totalApis);
+                    const setPercentage = (method, count) => {
+                        const percentage = Math.round((count / totalMethods) * 100);
+                        const percEl = document.getElementById(`${method}Percentage`);
+                        const barEl = document.getElementById(`${method}Bar`);
+                        if (percEl) percEl.textContent = `${percentage}%`;
+                        // Ensure bar element exists before setting style
+                        if (barEl && barEl.style) {
+                            barEl.style.width = `${percentage}%`;
+                        } else if (barEl) {
+                            console.warn(`Element with ID ${method}Bar found, but cannot set style.`);
+                        }
+                    };
+                    setPercentage('get', methodCounts.get);
+                    setPercentage('post', methodCounts.post);
+                    setPercentage('put', methodCounts.put);
+                    setPercentage('delete', methodCounts.delete);
+
+
+                    const categoryDistribution = document.getElementById('categoryDistribution');
+                    if (categoryDistribution) {
+                        categoryDistribution.innerHTML = '';
+                        if (apiCategories.length > 0) {
+                            apiCategories.forEach(category => {
+                                const count = category.items.length;
+                                const percentage = Math.round((count / totalMethods) * 100);
+                                const div = document.createElement('div');
+                                div.innerHTML = `
+                                <div class="flex justify-between mb-1.5 text-sm">
+                                  <span class="text-gray-300 truncate pr-2">${capitalizeFirstLetter(category.name)}</span>
+                                  <span class="text-gray-400 flex-shrink-0">${count} (${percentage}%)</span>
+                                </div>
+                                <div class="w-full bg-dark-600 rounded-full h-2.5 overflow-hidden shadow-inner">
+                                  <div class="bg-gradient-to-r from-primary-500 to-primary-400 h-full rounded-full transition-all duration-700 ease-out" style="width: ${percentage}%"></div>
+                                </div>
+                            `;
+                                categoryDistribution.appendChild(div);
+                            });
+                        } else {
+                            categoryDistribution.innerHTML = '<p class="text-gray-500 text-sm text-center py-4">No category data available.</p>';
+                        }
+                    }
+
+                    const categoriesGrid = document.getElementById('categoriesGrid');
+                    if (categoriesGrid) {
+                        categoriesGrid.innerHTML = '';
+                        if (apiCategories.length > 0) {
+                            apiCategories.forEach((category, idx) => {
+                                const categoryCard = document.createElement('div');
+                                categoryCard.className = 'category-grid-card animate-slideUp';
+                                categoryCard.style.animationDelay = `${idx * 0.06}s`;
+
+                                const categoryHeader = document.createElement('div');
+                                categoryHeader.className = 'category-grid-header';
+                                categoryHeader.innerHTML = `
+                            <h3 class="category-grid-title">${capitalizeFirstLetter(category.name)}</h3>
+                            <div class="category-grid-count">${category.items.length} endpoints</div>
+                          `;
+
+                                const categoryItems = document.createElement('div');
+                                categoryItems.className = 'category-grid-items';
+
+                                const sortedItems = category.items.sort((a, b) => a.name.localeCompare(b.name));
+                                const displayItems = sortedItems.slice(0, 4);
+                                displayItems.forEach(item => {
+                                    const method = item.method.toLowerCase();
+                                    const color = methodColors[method] || methodColors.get;
+                                    const itemEl = document.createElement('div');
+                                    itemEl.className = 'category-grid-item group';
+                                    itemEl.dataset.apiPath = item.path;
+                                    itemEl.dataset.apiName = item.name;
+                                    itemEl.dataset.apiDesc = item.desc;
+                                    itemEl.dataset.apiAuthor = item.author || '';
+                                    itemEl.dataset.apiMethod = method;
+                                    itemEl.innerHTML = `
+                              <span class="category-grid-item-name truncate pr-2 group-hover:text-white transition-colors">${capitalizeFirstLetter(item.name)}</span>
+                              <span class="category-grid-item-method ${color.bg} ${color.text} border ${color.border}">${method}</span>
+                            `;
+                                    categoryItems.appendChild(itemEl);
+                                });
+
+                                const footerDiv = document.createElement('div');
+                                footerDiv.className = 'mt-auto pt-4 text-center';
+
+                                if (sortedItems.length > 4) {
+                                    footerDiv.innerHTML = `<button class="view-all-btn" data-category-id="${category.id}">View all ${sortedItems.length}</button>`;
+                                } else if (sortedItems.length === 0) {
+                                    footerDiv.innerHTML = `<p class="text-sm text-gray-500 italic">No endpoints here.</p>`;
+                                }
+                                categoryItems.appendChild(footerDiv);
+
+
+                                categoryCard.appendChild(categoryHeader);
+                                categoryCard.appendChild(categoryItems);
+                                categoriesGrid.appendChild(categoryCard);
+                            });
+                        } else {
+                            categoriesGrid.innerHTML = '<p class="text-gray-500 text-center col-span-full py-10 text-lg">No API categories found.</p>';
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('Error initializing dashboard:', error);
+                    setElementContent('name', 'Error Loading');
+                    setElementContent('description', 'Could not load dashboard data. Please check console.');
+                    const body = document.querySelector('body');
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'fixed bottom-4 left-4 bg-red-800/90 text-white p-4 rounded-lg shadow-lg border border-red-600 z-[100]';
+                    errorDiv.textContent = 'Failed to initialize dashboard. Check console for details.';
+                    body.appendChild(errorDiv);
+                    setTimeout(() => errorDiv.remove(), 8000);
+                } finally {
+                    setTimeout(() => {
+                        const loadingScreen = document.getElementById("loadingScreen");
+                        if (loadingScreen) {
+                            loadingScreen.style.opacity = '0';
+                            loadingScreen.addEventListener('transitionend', () => loadingScreen.remove(), {
+                                once: true
+                            });
+                        }
+                        updateNavbarAppearance();
+                        loadActivePage();
+                    }, 600);
+                }
+            }
+
+            function setupFocusTrap(modalElement) {
+                const focusableElements = modalElement.querySelectorAll(
+                    'button, [href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                if (focusableElements.length === 0) return () => {};
+
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                try {
+                    firstElement.focus();
+                } catch (e) {}
+
+                const trapFocus = (e) => {
+                    if (e.key !== 'Tab' || !modalElement.contains(document.activeElement)) return;
+                    const isShiftTab = e.shiftKey;
+                    if (isShiftTab) {
+                        if (document.activeElement === firstElement) {
+                            lastElement.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            firstElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                };
+                modalElement.addEventListener('keydown', trapFocus);
+                return () => modalElement.removeEventListener('keydown', trapFocus);
+            }
+
+            function activateFocusTrap(modalElement) {
+                if (activeFocusTrapRemover) activeFocusTrapRemover();
+                activeFocusTrapRemover = setupFocusTrap(modalElement);
+            }
+
+            function deactivateFocusTrap() {
+                if (activeFocusTrapRemover) {
+                    activeFocusTrapRemover();
+                    activeFocusTrapRemover = null;
+                }
+            }
+
+            function closeModal(modalElement = apiResponseModal) {
+                if (!modalElement || modalElement.classList.contains('hidden')) return;
+                const contentArea = modalElement.querySelector('.modal-content-area');
+                modalElement.classList.remove('visible');
+                if (contentArea) contentArea.classList.remove('visible');
+                deactivateFocusTrap();
+
+                modalElement.addEventListener('transitionend', () => {
+                    modalElement.classList.add('hidden');
+                    if (modalElement.classList.contains('dynamic-modal')) {
+                        try {
+                            document.body.removeChild(modalElement);
+                        } catch (e) {}
+                    }
+                    if (!document.querySelector('#apiResponseModal:not(.hidden), .dynamic-modal:not(.hidden)')) {
+                        document.body.classList.remove('modal-open');
+                    }
+                }, {
+                    once: true
+                });
+            }
+
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const openModals = document.querySelectorAll('#apiResponseModal:not(.hidden), .dynamic-modal:not(.hidden)');
+                    if (openModals.length > 0) {
+                        closeModal(openModals[openModals.length - 1]);
+                    } else if (!notificationPopup.classList.contains('hidden')) {
+                        notificationPopup.classList.add('hidden');
+                    } else if (navMenu.classList.contains('active')) {
+                        toggleNavMenu();
+                    }
+                }
+            });
+
+            initializeDashboard();
         });
-
-        sideMenuItems.forEach((item) => {
-             item.addEventListener('click', function(e) {
-                 e.preventDefault();
-                 setActiveSection(this.dataset.section);
-             });
-         });
-
-        apiSearchInput.addEventListener('input', filterApiList);
-
-        notificationToggle.addEventListener('click', () => openModal('notificationPopupModal'));
-
-        markAllReadBtn.addEventListener('click', () => {
-            notifications.forEach(n => n.read = true);
-            saveNotifications();
-            updateNotificationBadge();
-            renderNotificationsPopup();
-            renderNotificationsSection();
-        });
-
-        [apiResponseModal, notificationPopupModal].forEach(modal => {
-             if (modal) {
-                 modal.addEventListener('click', (event) => {
-                     if (event.target === modal) closeModal(modal.id);
-                 });
-             }
-         });
-
-        document.addEventListener('keydown', (e) => {
-             if (e.key === 'Escape') {
-                 closeModal('apiResponseModal');
-                 closeModal('notificationPopupModal');
-                 closeSideMenu();
-             }
-             if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                 e.preventDefault();
-                 setActiveSection('apis');
-                 apiSearchInput.focus();
-             }
-         });
-
-        document.addEventListener('DOMContentLoaded', initializeApp);
-
     </script>
-
 </body>
+
 </html>
